@@ -18,7 +18,7 @@ public class JdbcVetDao {
 
     public List<Vet> getEvents() {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT lastname, firstname, speciality FROM vet", new VetRowMapper());
+        return select.query("SELECT last_name, first_name, speciality FROM vets", new VetRowMapper());
     }
 
 }
