@@ -5,8 +5,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-    <include file="sprint_1/sprint_1_master.xml" relativeToChangelogFile="true"/>
-    <include file="sprint_2/sprint_2_master.xml" relativeToChangelogFile="true"/>
-    <include file="sprint_3/sprint_3_master.xml" relativeToChangelogFile="true"/>
+    <include file="create_pets.sql" relativeToChangelogFile="true"/>
+    <include file="populate_pets.sql" relativeToChangelogFile="true"/>    
 
 </databaseChangeLog>
