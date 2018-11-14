@@ -1,14 +1,17 @@
 package be.heh.petclinic.domain;
 
-public class Vet {
+import java.util.List;
+
+public class Owner {
 
     private String lastname;
     private String firstname;
     private String city;
     private String address;
     private String telephone;
-    private List<Pet> pets;
+    private List<Pet> pets; // Todo
 
+    // Setters
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
@@ -25,10 +28,11 @@ public class Vet {
         this.address = address;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
+    // Getters
     public String getLastname() {
         return this.lastname;
     }
@@ -41,12 +45,12 @@ public class Vet {
         return this.city;
     }
 
-    public String getCity() {
-        return this.city;
+    public String getAddress() {
+        return this.address;
     }
 
-    public String getCity() {
-        return this.city;
+    public String getTelephone() {
+        return this.telephone;
     }
 
 }

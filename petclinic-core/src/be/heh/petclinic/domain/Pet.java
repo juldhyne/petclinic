@@ -1,11 +1,14 @@
 package be.heh.petclinic.domain;
 
+import java.util.List;
+
+
 public class Pet {
 
     private String name;
     private String birthdate;
     private String type;
-    private List<Visit> visits;
+    // private List<Visit> visits; // Todo
 
     // Setters
     public void setName(String name) {
