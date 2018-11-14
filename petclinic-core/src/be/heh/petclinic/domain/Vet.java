@@ -1,32 +1,36 @@
 package be.heh.petclinic.domain;
 
+import java.util.List;
+
 public class Vet {
 
     private String lastname;
     private String firstname;
     private String speciality;
 
-    public void setLastname(String lastname){
+    // Setters
+    public void setLastname(String lastname) {
         this.lastname = lastname;
     }
 
-    public void setFirstname(String firstname){
+    public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
 
-    public void setSpeciality(String speciality){
+    public void setSpeciality(String speciality) {
         this.speciality = speciality;
     }
 
-    public String getLastname(){
+    // Getters
+    public String getLastname() {
         return this.lastname;
     }
 
-    public String getFirstname(){
+    public String getFirstname() {
         return this.firstname;
     }
 
-    public String getSpeciality(){
+    public String getSpeciality() {
         return this.speciality;
     }
 
