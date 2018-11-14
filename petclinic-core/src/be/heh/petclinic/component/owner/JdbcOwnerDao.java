@@ -15,8 +15,7 @@ public class JdbcOwnerDao {
 
     public List<Owner> getEvents() {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT last_name, first_name FROM owners", new OwnerRowMapper());
+        return select.query("SELECT last_name, first_name, city, address, telephone FROM owners",
+                new OwnerRowMapper());
     }
-
 }
-

@@ -13,9 +13,10 @@ public class JdbcPetDao {
         this.dataSource = dataSource;
     }
 
-    public List<Pet> getEvents() {
+    public Pet getEvent(int id) {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT name, birthdate, owner FROM pets", new PetRowMapper());
+        return select.queryForObject("SELECT name, birthdate, type FROM pets where id=?",
+                new Object[] {id}, new PetRowMapper());
     }
 
 }

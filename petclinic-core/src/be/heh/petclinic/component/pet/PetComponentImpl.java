@@ -1,8 +1,8 @@
 package be.heh.petclinic.component.pet;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Collection;
+// import java.util.ArrayList;
+// import java.util.List;
+// import java.util.Collection;
 import javax.sql.DataSource;
 import be.heh.petclinic.domain.*;
 
@@ -15,9 +15,9 @@ class PetComponentImpl implements PetComponent {
     }
 
     @Override
-    public Collection<Pet> getPets() {
-        List<Pet> pets = petDao.getEvents();
-        return pets;
+    public Pet getPet(int id) {
+        Pet pet = petDao.getEvent(id);
+        return pet;
     }
 
 

@@ -9,31 +9,31 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.http.ResponseEntity;
 
-import be.heh.petclinic.component.vet.VetComponent;
-import be.heh.petclinic.domain.Vet;
+import be.heh.petclinic.component.pet.PetComponent;
+import be.heh.petclinic.domain.Pet;
 
 import java.util.List;
 import java.util.Collection;
 
 @RestController
-public class VetRestController {
+public class PetRestController {
 
 	@Autowired
-	private VetComponent vetComponentImpl;
+	private PetComponent petComponentImpl;
     
 	//@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@RequestMapping("api/v1/vets")
-	public ResponseEntity<Collection<Vet>> getVets(){
-	
-		Collection<Vet> vets = vetComponentImpl.getVets();
-		if(vets.isEmpty()){
-			return new ResponseEntity<Collection<Vet>>(HttpStatus.NOT_FOUND);
+	@RequestMapping("api/v1/pet")
+	public ResponseEntity<Pet> getPets(@RequestParam("id") int id){
+		Pet pet = petComponentImpl.getPet(id);
+		if(pet == null){
+			return new ResponseEntity<Pet>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<Collection<Vet>>(vets,HttpStatus.OK);
+		return new ResponseEntity<Pet>(pet,HttpStatus.OK);
 	}
 
 }

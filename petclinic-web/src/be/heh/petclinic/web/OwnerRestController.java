@@ -13,27 +13,27 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.http.ResponseEntity;
 
-import be.heh.petclinic.component.vet.VetComponent;
-import be.heh.petclinic.domain.Vet;
+import be.heh.petclinic.component.owner.OwnerComponent;
+import be.heh.petclinic.domain.Owner;
 
 import java.util.List;
 import java.util.Collection;
 
 @RestController
-public class VetRestController {
+public class OwnerRestController {
 
 	@Autowired
-	private VetComponent vetComponentImpl;
+	private OwnerComponent ownerComponentImpl;
     
 	//@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@RequestMapping("api/v1/vets")
-	public ResponseEntity<Collection<Vet>> getVets(){
+	@RequestMapping("api/v1/owners")
+	public ResponseEntity<Collection<Owner>> getOwners(){
 	
-		Collection<Vet> vets = vetComponentImpl.getVets();
-		if(vets.isEmpty()){
-			return new ResponseEntity<Collection<Vet>>(HttpStatus.NOT_FOUND);
+		Collection<Owner> owners = ownerComponentImpl.getOwners();
+		if(owners.isEmpty()){
+			return new ResponseEntity<Collection<Owner>>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<Collection<Vet>>(vets,HttpStatus.OK);
+		return new ResponseEntity<Collection<Owner>>(owners,HttpStatus.OK);
 	}
 
 }
