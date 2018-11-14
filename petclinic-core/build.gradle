@@ -81,9 +81,9 @@ task('dev'){
         activities {
          main {
                 changeLogFile changeLog
-                url 'jdbc:mysql://127.0.0.1:3306/liquibase_petclinic'
+                url 'jdbc:mysql://127.0.0.1:3306/liquibase_petclinic?useSSL=false&serverTimezone=UTC'
                 username 'root'
-                password 'root'
+                password 'b3RmELKOvCUrAdxIg0GEmugc3SY'
                 driver 'com.mysql.cj.jdbc.Driver'
             }
         }
