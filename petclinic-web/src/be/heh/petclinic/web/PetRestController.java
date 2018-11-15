@@ -27,8 +27,8 @@ public class PetRestController {
 	private PetComponent petComponentImpl;
     
 	//@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@RequestMapping("api/v1/pet")
-	public ResponseEntity<Pet> getPets(@RequestParam("id") int id){
+	@GetMapping("api/v1/pet/{id:[\\d]+}")
+	public ResponseEntity<Pet> getPets(@RequestParam int id){
 		Pet pet = petComponentImpl.getPet(id);
 		if(pet == null){
 			return new ResponseEntity<Pet>(HttpStatus.NOT_FOUND);

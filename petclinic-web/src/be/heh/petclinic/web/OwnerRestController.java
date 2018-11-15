@@ -9,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +28,7 @@ public class OwnerRestController {
 	private OwnerComponent ownerComponentImpl;
     
 	//@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@RequestMapping("api/v1/owners")
+	@GetMapping("api/v1/owners")
 	public ResponseEntity<Collection<Owner>> getOwners(){
 	
 		Collection<Owner> owners = ownerComponentImpl.getOwners();
@@ -35,5 +37,24 @@ public class OwnerRestController {
 		}
 		return new ResponseEntity<Collection<Owner>>(owners,HttpStatus.OK);
 	}
+
+	@GetMapping("api/v1/owner/{id:[\\d]+}")
+	public ResponseEntity<Owner> getOwner(@PathVariable int id ){
+		Owner owner = ownerComponentImpl.getOwner(id);
+		if(owner == null){
+			return new ResponseEntity<Owner>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Owner>(owner,HttpStatus.OK);
+	}
+
+	// @PostMapping("api/", method = RequestMethod.POST)
+	// public ResponseEntity<Owner> getOwner(@RequestParam int id){
+	
+	// 	Owner owner = ownerComponentImpl.getOwner(id);
+	// 	if(owners.isEmpty()){
+	// 		return new ResponseEntity<Owner>(HttpStatus.NOT_FOUND);
+	// 	}
+	// 	return new ResponseEntity<Owner>(owners,HttpStatus.OK);
+	// }
 
 }

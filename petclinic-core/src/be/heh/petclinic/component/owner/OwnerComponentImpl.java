@@ -20,5 +20,21 @@ class OwnerComponentImpl implements OwnerComponent {
         return owners;
     }
 
+    @Override
+    public Owner getOwner(int id) {
+        Owner owner = ownerDao.getEvent(id);
+        return owner;
+    }
+
+    @Override
+    public List<Pet> getPets(int id) {
+        List<Pet> ownerPets = ownerDao.getPets(id);
+        return ownerPets;
+    }
+
+    @Override
+    public int addOwner(Owner owner) {
+        return ownerDao.addEvent(owner);
+    }
 
 }
