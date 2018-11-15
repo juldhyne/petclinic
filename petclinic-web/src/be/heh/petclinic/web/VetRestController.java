@@ -26,7 +26,7 @@ public class VetRestController {
 	private VetComponent vetComponentImpl;
     
 	//@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@RequestMapping("api/v1/vets")
+	@GetMapping("api/v1/vets")
 	public ResponseEntity<Collection<Vet>> getVets(){
 	
 		Collection<Vet> vets = vetComponentImpl.getVets();
