@@ -1,11 +1,14 @@
 package be.heh.petclinic.component.pet;
 
-import be.heh.petclinic.domain.Pet;
 import java.util.List;
-import java.util.Collection;
+import be.heh.petclinic.domain.Pet;
 
 public interface PetComponent {
 
-    Pet getPet(int id);
+    List<Pet> getPets();
+
+    Pet getPets(int id);
+
+    List<Pet> getPets(String types);
 
 }

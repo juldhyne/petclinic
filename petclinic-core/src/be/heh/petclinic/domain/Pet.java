@@ -5,12 +5,18 @@ import java.util.List;
 
 public class Pet {
 
+    private int id;
     private String name;
     private String birthdate;
     private String type;
-    // private List<Visit> visits; // Todo
+    private int ownerId;
 
     // Setters
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -23,12 +29,15 @@ public class Pet {
         this.type = type;
     }
 
-    // Todo
-    // public void setVisit(Visit visit) {
-    // this.visit = visit
-    // }
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
+    }
 
     // Getters
+    public int getId() {
+        return this.id;
+    }
+
     public String getName() {
         return this.name;
     }
@@ -41,9 +50,8 @@ public class Pet {
         return this.type;
     }
 
-    // Todo
-    // public List<Visit> getVisits() {
-    // return this.visits;
-    // }
+    public int getOwnerId() {
+        return this.ownerId;
+    }
 
 }

@@ -1,15 +1,14 @@
 package be.heh.petclinic.component.owner;
 
+import java.util.List;
 import be.heh.petclinic.domain.Owner;
 import be.heh.petclinic.domain.Pet;
-import java.util.List;
-import java.util.Collection;
 
 public interface OwnerComponent {
 
-    Collection<Owner> getOwners();
+    List<Owner> getOwners();
 
-    Owner getOwner(int id);
+    Owner getOwners(int id);
 
     List<Pet> getPets(int id);
 

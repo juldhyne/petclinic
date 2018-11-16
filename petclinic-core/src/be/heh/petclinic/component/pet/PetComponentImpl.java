@@ -1,8 +1,6 @@
 package be.heh.petclinic.component.pet;
 
-// import java.util.ArrayList;
-// import java.util.List;
-// import java.util.Collection;
+import java.util.List;
 import javax.sql.DataSource;
 import be.heh.petclinic.domain.*;
 
@@ -15,9 +13,21 @@ class PetComponentImpl implements PetComponent {
     }
 
     @Override
-    public Pet getPet(int id) {
-        Pet pet = petDao.getEvent(id);
+    public List<Pet> getPets() {
+        List<Pet> pets = petDao.findAll();
+        return pets;
+    }
+
+    @Override
+    public Pet getPets(int id) {
+        Pet pet = petDao.findById(id);
         return pet;
+    }
+
+    @Override
+    public List<Pet> getPets(String type) {
+        List<Pet> pets = petDao.findByType(type);
+        return pets;
     }
 
 

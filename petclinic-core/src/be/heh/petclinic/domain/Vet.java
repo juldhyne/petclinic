@@ -1,7 +1,5 @@
 package be.heh.petclinic.domain;
 
-import java.util.List;
-
 public class Vet {
 
     private String lastname;

@@ -1,8 +1,8 @@
 package be.heh.petclinic.component.owner;
 
-import org.springframework.jdbc.core.RowMapper;
-import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import org.springframework.jdbc.core.RowMapper;
 import be.heh.petclinic.domain.Owner;
 
 public class OwnerRowMapper implements RowMapper<Owner> {
