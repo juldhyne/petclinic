@@ -32,5 +32,13 @@ public class JdbcPetDao {
                 new PetRowMapper());
     }
 
+    public List<Pet> findByOwnerId(int ownerId) {
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        // return select.query("SELECT id, name, birthdate, type FROM pets WHERE type=?",
+        return select.query(
+                "SELECT * FROM pets WHERE owner_id IN (SELECT id FROM owners WHERE id = ?)",
+                new Object[] {ownerId}, new PetRowMapper());
+    }
+
 }
 

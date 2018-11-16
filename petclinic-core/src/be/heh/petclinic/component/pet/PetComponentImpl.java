@@ -30,5 +30,10 @@ class PetComponentImpl implements PetComponent {
         return pets;
     }
 
+    @Override
+    public List<Pet> getPetsByOwnerId(int id) {
+        List<Pet> pets = petDao.findByOwnerId(id);
+        return pets;
+    }
 
 }

@@ -45,4 +45,13 @@ public class PetRestController {
 		}
 		return new ResponseEntity<Collection<Pet>>(pets,HttpStatus.OK);
 	}
+
+	@GetMapping("api/v1/pets/u/{id:[\\d]+}")
+	public ResponseEntity<Collection<Pet>> getPetsByOwnerId(@PathVariable int id){
+		Collection<Pet> pets = petComponentImpl.getPetsByOwnerId(id);
+		if(pets.isEmpty()){
+			return new ResponseEntity<Collection<Pet>>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<Collection<Pet>>(pets,HttpStatus.OK);
+	}
 }
