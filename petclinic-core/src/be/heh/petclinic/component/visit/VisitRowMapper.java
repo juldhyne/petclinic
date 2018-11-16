@@ -13,7 +13,7 @@ public class VisitRowMapper implements RowMapper<Visit> {
         visit.setId(rs.getInt("id"));
         visit.setDate(rs.getString("date"));
         visit.setDescription(rs.getString("description"));
-        visit.setPetId(rs.getInt("petId"));
+        visit.setPetId(rs.getInt("pet_id"));
         return visit;
     }
 

@@ -22,7 +22,7 @@ public class JdbcVisitDao {
     public List<Visit> findByPetId(int id) {
         JdbcTemplate select = new JdbcTemplate(dataSource);
         return select.query(
-                "SELECT * FROM visits WHERE petId IN (SELECT id FROM pets WHERE id = ?)",
+                "SELECT * FROM visits WHERE pet_id IN (SELECT id FROM pets WHERE id = ?)",
                 new Object[] {id}, new VisitRowMapper());
     }
 
