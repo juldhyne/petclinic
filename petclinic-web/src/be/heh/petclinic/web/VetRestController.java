@@ -18,12 +18,6 @@ public class VetRestController {
 
 	@Autowired
 	private VetComponent vetComponentImpl;
-<<<<<<< HEAD
-
-=======
-    
-	//@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
->>>>>>> bc42d56ca4d8f73c49ea3cc06ccf8eaf39a239ac
 	@GetMapping("api/v1/vets")
 	public ResponseEntity<Collection<Vet>> getVets(){
 	

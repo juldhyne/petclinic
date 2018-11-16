@@ -19,8 +19,8 @@ class VisitComponentImpl implements VisitComponent {
     }
 
     @Override
-    public List<Visit> getVisitsByPetId(int id) {
-        List<Visit> visits = visitDao.findByPetId(id);
+    public List<Visit> getVisitsByPetId(int petId) {
+        List<Visit> visits = visitDao.findByPetId(petId);
         return visits;
     }
 }

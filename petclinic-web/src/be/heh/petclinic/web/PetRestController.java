@@ -18,7 +18,6 @@ public class PetRestController {
 
 	@Autowired
 	private PetComponent petComponentImpl;
-<<<<<<< HEAD
 	
 	@GetMapping("api/v1/pets")
 	public ResponseEntity<Collection<Pet>> getPets(){
@@ -32,13 +31,6 @@ public class PetRestController {
 	@GetMapping("api/v1/pets/{id:[\\d]+}")
 	public ResponseEntity<Pet> getPets(@PathVariable int id){
 		Pet pet = petComponentImpl.getPets(id);
-=======
-    
-	//@RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@GetMapping("api/v1/pet/{id:[\\d]+}")
-	public ResponseEntity<Pet> getPets(@RequestParam int id){
-		Pet pet = petComponentImpl.getPet(id);
->>>>>>> bc42d56ca4d8f73c49ea3cc06ccf8eaf39a239ac
 		if(pet == null){
 			return new ResponseEntity<Pet>(HttpStatus.NOT_FOUND);
 		}
