@@ -2,7 +2,7 @@
 .idea/
 
 #gradle
-.gradle
+.gradle/
 */build/
 
 # Compiled class file
