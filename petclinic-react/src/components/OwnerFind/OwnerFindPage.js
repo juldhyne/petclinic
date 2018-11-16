@@ -41,6 +41,7 @@ export default class OwnerFindPage extends Component
                                 <th>Name</th>
                                 <th>Locality</th>
                                 <th>Phone</th>
+                                <th>Pets</th>
                             </tr>
                         </thead>
                         <tbody>
