@@ -12,8 +12,8 @@ public interface OwnerComponent {
 
     Owner getOwners(int id);
 
-    List<Pet> getPets(int id);
+    // List<Pet> getPets(int id);
 
-    int addOwner(Owner owner);
+    // int addOwner(Owner owner);
 
 }
