@@ -1,9 +1,5 @@
 package be.heh.petclinic.domain;
 
-import java.util.List;
-import java.util.Arrays;
-import java.util.stream.Collectors;
-
 public class Owner {
 
     private int id;
@@ -12,7 +8,7 @@ public class Owner {
     private String city;
     private String address;
     private String telephone;
-    private List<String> petsNames;
+    private String[] petsNames;
 
     // Setters
     public void setId(int id) {
@@ -39,12 +35,8 @@ public class Owner {
         this.telephone = telephone;
     }
 
-    public void setPetsNames(String petsNames) {
-        // Mutable list from an array
-        // this.petsNames = Arrays.stream(petsNames.split(",")).collect(Collectors.toList());
-
-        // Not mutable list
-        this.petsNames = Arrays.asList(petsNames.split(","));
+    public void setPetsNames(String[] petsNames) {
+        this.petsNames = petsNames;
     }
 
     // Getters
@@ -72,7 +64,7 @@ public class Owner {
         return this.telephone;
     }
 
-    public List<String> getPetsNames() {
+    public String[] getPetsNames() {
         return this.petsNames;
     }
 
