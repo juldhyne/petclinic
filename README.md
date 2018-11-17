@@ -75,8 +75,11 @@ Format:
     "name": "Leo",
     "birthdate": "2000-09-07",
     "type": "cat",
-    "ownerId": 1,
-    "ownerName": "Franklin,George"
+    "owner": {
+        "lastName": "Franklin",
+        "firstName": "George",
+        "id": "1"
+        }
 }
 ```
 ### Visite

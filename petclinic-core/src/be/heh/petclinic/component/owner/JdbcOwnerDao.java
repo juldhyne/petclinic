@@ -15,7 +15,7 @@ public class JdbcOwnerDao {
 
     private DataSource dataSource;
     private static String sql =
-            "SELECT * , (SELECT group_concat(name) FROM pets WHERE owner_id = owners.id) AS pets_names FROM owners";
+            "SELECT * , (SELECT ifnull(group_concat(name),'') FROM pets WHERE owner_id = owners.id) AS pets_names FROM owners";
 
     public JdbcOwnerDao(DataSource dataSource) {
         this.dataSource = dataSource;
