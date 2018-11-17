@@ -111,15 +111,17 @@ Format:
   - [ ] Page de propriétaire
   - [ ] Page d'animal
 
-- [x] Endpoints
+- [ ] GET Endpoints
   - [x] Propriétaire comprenant la liste de nom de ses animaux
   - [x] Animal comprenant le nom de son maitre
+  - [ ] Page d'erreur par défaut
 
 - [ ] POST endpoints pour les éditions
 
 ### Optionnel
 
 - [ ] Dockerifier
+- [ ] Page d'erreur spécifique
 - [ ] Convertir en PokéCenter
 - [ ] Migrer vers Firebase
 
