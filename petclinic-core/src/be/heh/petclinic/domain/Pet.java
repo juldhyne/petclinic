@@ -1,8 +1,5 @@
 package be.heh.petclinic.domain;
 
-import java.util.List;
-
-
 public class Pet {
 
     private int id;
@@ -10,6 +7,7 @@ public class Pet {
     private String birthdate;
     private String type;
     private int ownerId;
+    private String ownerName;
 
     // Setters
 
@@ -33,6 +31,10 @@ public class Pet {
         this.ownerId = ownerId;
     }
 
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
     // Getters
     public int getId() {
         return this.id;
@@ -52,6 +54,10 @@ public class Pet {
 
     public int getOwnerId() {
         return this.ownerId;
+    }
+
+    public String getOwnerName() {
+        return this.ownerName;
     }
 
 }

@@ -8,6 +8,8 @@ import be.heh.petclinic.domain.Pet;
 public class JdbcPetDao {
 
     private DataSource dataSource;
+    private String sql =
+            "SELECT * , (SELECT concat_ws(',',last_name,first_name) FROM owners where id = pets.owner_id ) AS owner_name FROM pets";
 
     public JdbcPetDao(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -15,28 +17,25 @@ public class JdbcPetDao {
 
     public List<Pet> findAll() {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT id, name, birthdate, type FROM pets", new PetRowMapper());
+        return select.query(sql, new PetRowMapper());
     }
 
     public Pet findById(int id) {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        // return select.queryForObject("SELECT id, name, birthdate, type FROM pets WHERE id=?",
-        return select.queryForObject("SELECT * FROM pets WHERE id = ?", new Object[] {id},
+        return select.queryForObject(String.join(" ", sql, "WHERE id = ?"), new Object[] {id},
                 new PetRowMapper());
     }
 
     public List<Pet> findByType(String type) {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        // return select.query("SELECT id, name, birthdate, type FROM pets WHERE type=?",
-        return select.query("SELECT * FROM pets WHERE type = ?", new Object[] {type},
+        return select.query(String.join(" ", sql, "WHERE type = ?"), new Object[] {type},
                 new PetRowMapper());
     }
 
     public List<Pet> findByOwnerId(int ownerId) {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        // return select.query("SELECT id, name, birthdate, type FROM pets WHERE type=?",
         return select.query(
-                "SELECT * FROM pets WHERE owner_id IN (SELECT id FROM owners WHERE id = ?)",
+                String.join(" ", sql, "WHERE owner_id IN (SELECT id FROM owners WHERE id = ?)"),
                 new Object[] {ownerId}, new PetRowMapper());
     }
 

@@ -15,6 +15,7 @@ public class PetRowMapper implements RowMapper<Pet> {
         pet.setBirthdate(rs.getString("birthdate"));
         pet.setType(rs.getString("type"));
         pet.setOwnerId(rs.getInt("owner_id"));
+        pet.setOwnerName(rs.getString("owner_name"));
         return pet;
     }
 }

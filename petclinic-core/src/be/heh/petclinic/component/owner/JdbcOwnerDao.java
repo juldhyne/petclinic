@@ -14,6 +14,8 @@ import be.heh.petclinic.domain.Pet;
 public class JdbcOwnerDao {
 
     private DataSource dataSource;
+    private static String sql =
+            "SELECT * , (SELECT group_concat(name) FROM pets WHERE owner_id = owners.id) AS pets_names FROM owners";
 
     public JdbcOwnerDao(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -21,26 +23,28 @@ public class JdbcOwnerDao {
 
     public List<Owner> findAll() {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT * FROM owners", new OwnerRowMapper());
+        return select.query(sql, new OwnerRowMapper());
     }
 
     public Owner findById(int id) {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.queryForObject("SELECT * FROM owners WHERE id=?", new Object[] {id},
+        return select.queryForObject(String.join(" ", sql, "WHERE id=?"), new Object[] {id},
                 new OwnerRowMapper());
     }
 
-    public List<Pet> findPets(int id) {
-        JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT * FROM pets WHERE owner_id = ?", new Object[] {id},
-                new PetRowMapper());
-    }
+    // Useless function ?
+    // public List<Pet> findPets(int id) {
+    // JdbcTemplate select = new JdbcTemplate(dataSource);
+    // return select.query("SELECT * FROM pets WHERE owner_id = ?", new Object[] {id},
+    // new PetRowMapper());
+    // }
 
-    public int insertOwner(Owner owner) {
-        JdbcTemplate insert = new JdbcTemplate(dataSource);
-        String sql =
-                "INSERT INTO owners (first_name, last_name, city, address, telephone) VALUES (?,?,?,?,?)";
-        return insert.update(sql, owner.getFirstname(), owner.getLastname(), owner.getCity(),
-                owner.getAddress(), owner.getTelephone());
-    }
+    // Todo
+    // public int insertOwner(Owner owner) {
+    // JdbcTemplate insert = new JdbcTemplate(dataSource);
+    // String sql =
+    // "INSERT INTO owners (first_name, last_name, city, address, telephone) VALUES (?,?,?,?,?)";
+    // return insert.update(sql, owner.getFirstname(), owner.getLastname(), owner.getCity(),
+    // owner.getAddress(), owner.getTelephone());
+    // }
 }
