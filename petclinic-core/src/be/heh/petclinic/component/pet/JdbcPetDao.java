@@ -9,7 +9,7 @@ public class JdbcPetDao {
 
     private DataSource dataSource;
     private String sql =
-            "SELECT * , (SELECT concat_ws(',',last_name,first_name) FROM owners where id = pets.owner_id ) AS owner_name FROM pets";
+            "SELECT id,name,birthdate,type, (SELECT concat_ws(',',pets.owner_id,last_name,first_name) FROM owners where id = pets.owner_id ) AS owner FROM pets";
 
     public JdbcPetDao(DataSource dataSource) {
         this.dataSource = dataSource;

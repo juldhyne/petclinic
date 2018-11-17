@@ -1,16 +1,16 @@
 package be.heh.petclinic.domain;
 
+import java.util.HashMap;
+
 public class Pet {
 
     private int id;
     private String name;
     private String birthdate;
     private String type;
-    private int ownerId;
-    private String ownerName;
+    private HashMap<String, String> owner; // Should be replace by a minimal version of Owner class?
 
     // Setters
-
     public void setId(int id) {
         this.id = id;
     }
@@ -27,12 +27,8 @@ public class Pet {
         this.type = type;
     }
 
-    public void setOwnerId(int ownerId) {
-        this.ownerId = ownerId;
-    }
-
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
+    public void setOwner(HashMap<String, String> owner) {
+        this.owner = owner;
     }
 
     // Getters
@@ -52,12 +48,7 @@ public class Pet {
         return this.type;
     }
 
-    public int getOwnerId() {
-        return this.ownerId;
+    public HashMap<String, String> getOwner() {
+        return this.owner;
     }
-
-    public String getOwnerName() {
-        return this.ownerName;
-    }
-
 }

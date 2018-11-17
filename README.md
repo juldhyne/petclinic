@@ -27,9 +27,9 @@ Endpoint | Description | Sortie
 Format:
 ```json
 {
-"lastname": "Carter",
-"firstname": "James",
-"speciality": "radiology"
+    "lastname": "Carter",
+    "firstname": "James",
+    "speciality": "radiology"
 }
 ```
 
@@ -45,12 +45,18 @@ Endpoint | Description | Sortie
 Format:
 ```json
 {
-"id": 2,
-"lastname": "Davis",
-"firstname": "Betty",
-"city": "638 Cardinal Ave.",
-"address": "Sun Prairie",
-"telephone": "6085551749"
+    "id": 1,
+    "lastname": "Franklin",
+    "firstname": "George",
+    "city": "110 W. Liberty St.",
+    "address": "Madison",
+    "telephone": "6085551023",
+    "petsNames": [
+        "Leo",
+        "Samantha",
+        "Max",
+        "Sly"
+        ]
 }
 ```
 ### Animale
@@ -65,14 +71,15 @@ Endpoint | Description | Sortie
 Format:
 ```json
 {
-"id": 1,
-"name": "Leo",
-"birthdate": "2000-09-07",
-"type": "cat",
-"ownerId": 1
+    "id": 1,
+    "name": "Leo",
+    "birthdate": "2000-09-07",
+    "type": "cat",
+    "ownerId": 1,
+    "ownerName": "Franklin,George"
 }
 ```
-### Visiite
+### Visite
 
 `/api/v1/visits`
 
@@ -84,10 +91,10 @@ Endpoint | Description | Sortie
 Format:
 ```json
 {
-"id": 1,
-"date": "2010-03-04",
-"description": "rabies shot",
-"petId": 7
+    "id": 1,
+    "date": "2010-03-04",
+    "description": "rabies shot",
+    "petId": 7
 }
 ```
 
@@ -101,9 +108,9 @@ Format:
   - [ ] Page de propriétaire
   - [ ] Page d'animal
 
-- [ ] Endpoints
-  - [ ] Propriétaire comprenant la liste de nom de ses animaux
-  - [ ] Animal comprenant le nom de son maitre
+- [x] Endpoints
+  - [x] Propriétaire comprenant la liste de nom de ses animaux
+  - [x] Animal comprenant le nom de son maitre
 
 - [ ] POST endpoints pour les éditions
 

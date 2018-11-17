@@ -1,5 +1,6 @@
 package be.heh.petclinic.component.pet;
 
+import java.util.HashMap;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
@@ -14,8 +15,17 @@ public class PetRowMapper implements RowMapper<Pet> {
         pet.setName(rs.getString("name"));
         pet.setBirthdate(rs.getString("birthdate"));
         pet.setType(rs.getString("type"));
-        pet.setOwnerId(rs.getInt("owner_id"));
-        pet.setOwnerName(rs.getString("owner_name"));
+        pet.setOwner(subMap(rs.getString("owner")));
+
         return pet;
+    }
+
+    private HashMap<String, String> subMap(String s) {
+        HashMap<String, String> owner = new HashMap<String, String>();
+        String[] tmp = s.split(",");
+        owner.put("id", tmp[0]);
+        owner.put("lastName", tmp[1]);
+        owner.put("firstName", tmp[2]);
+        return owner;
     }
 }
