@@ -59,7 +59,7 @@ Format:
         ]
 }
 ```
-### Animale
+### Animal
 
 `/api/v1/pets`
 
@@ -68,6 +68,7 @@ Endpoint | Description | Sortie
 /{id} | Identifiant unique d'un animal | Animal spécifique
 /{type} | Type d'animal | Liste d'animal de même type
 /o/{id} | Identifiant unique d'un utilisateur | Liste d'animal d'un même propriétaire
+
 Format:
 ```json
 {
