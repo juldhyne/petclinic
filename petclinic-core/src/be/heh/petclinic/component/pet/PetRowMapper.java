@@ -1,9 +1,9 @@
 package be.heh.petclinic.component.pet;
 
-import java.util.HashMap;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
+import be.heh.petclinic.domain.BaseOwner;
 import be.heh.petclinic.domain.Pet;
 
 public class PetRowMapper implements RowMapper<Pet> {
@@ -20,12 +20,12 @@ public class PetRowMapper implements RowMapper<Pet> {
         return pet;
     }
 
-    private HashMap<String, String> subMap(String s) {
-        HashMap<String, String> owner = new HashMap<String, String>();
+    private BaseOwner subMap(String s) {
+        BaseOwner owner = new BaseOwner();
         String[] tmp = s.split(",");
-        owner.put("id", tmp[0]);
-        owner.put("lastName", tmp[1]);
-        owner.put("firstName", tmp[2]);
+        owner.setId(Integer.parseInt(tmp[0]));
+        owner.setLastname(tmp[1]);
+        owner.setFirstname(tmp[2]);
         return owner;
     }
 }
