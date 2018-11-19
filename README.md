@@ -121,6 +121,7 @@ Format:
 
 ### Optionnel
 
+- [ ] Variable d'environement
 - [ ] Dockerifier
 - [ ] Page d'erreur spécifique
 - [ ] Convertir en PokéCenter
