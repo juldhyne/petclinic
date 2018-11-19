@@ -89,7 +89,7 @@ Format:
 
 Endpoint | Description | Sortie
 -|-|-
-/{id} | Identifiant unique d'une visite | Animal spécifique
+/{id} | Identifiant unique d'une visite | Visite spécifique
 /p/{id} | Identifiant unique d'un animal | Liste de visite d'un même animal
 
 Format:
