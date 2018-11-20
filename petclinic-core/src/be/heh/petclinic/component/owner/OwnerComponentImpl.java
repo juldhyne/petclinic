@@ -24,6 +24,12 @@ class OwnerComponentImpl implements OwnerComponent {
         return owner;
     }
 
+    @Override
+    public List<Owner> getOwners(String lastname) {
+        List<Owner> owners = ownerDao.findByLastname(lastname);
+        return owners;
+    }
+
     // @Override
     // public List<Pet> getPets(int id) {
     // List<Pet> ownerPets = ownerDao.findPets(id);
