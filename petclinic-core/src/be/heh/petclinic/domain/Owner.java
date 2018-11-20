@@ -1,28 +1,13 @@
 package be.heh.petclinic.domain;
 
-public class Owner {
+public class Owner extends BaseOwner {
 
-    private int id;
-    private String lastname;
-    private String firstname;
     private String city;
     private String address;
     private String telephone;
     private String[] petsNames;
 
     // Setters
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
     public void setCity(String city) {
         this.city = city;
     }
@@ -40,18 +25,6 @@ public class Owner {
     }
 
     // Getters
-    public int getId() {
-        return this.id;
-    }
-
-    public String getLastname() {
-        return this.lastname;
-    }
-
-    public String getFirstname() {
-        return this.firstname;
-    }
-
     public String getCity() {
         return this.city;
     }

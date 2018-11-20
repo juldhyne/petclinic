@@ -32,6 +32,12 @@ public class JdbcOwnerDao {
                 new OwnerRowMapper());
     }
 
+    public List<Owner> findByLastname(String lastname) {
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        return select.query(String.join(" ", sql, "WHERE last_name LIKE ?"),
+                new Object[] {String.format("%s%%", lastname)}, new OwnerRowMapper());
+    }
+
     // Useless function ?
     // public List<Pet> findPets(int id) {
     // JdbcTemplate select = new JdbcTemplate(dataSource);

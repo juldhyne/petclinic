@@ -1,14 +1,12 @@
 package be.heh.petclinic.domain;
 
-import java.util.HashMap;
-
 public class Pet {
 
     private int id;
     private String name;
     private String birthdate;
     private String type;
-    private HashMap<String, String> owner; // Should be replace by a minimal version of Owner class?
+    private BaseOwner owner;
 
     // Setters
     public void setId(int id) {
@@ -27,7 +25,7 @@ public class Pet {
         this.type = type;
     }
 
-    public void setOwner(HashMap<String, String> owner) {
+    public void setOwner(BaseOwner owner) {
         this.owner = owner;
     }
 
@@ -48,7 +46,7 @@ public class Pet {
         return this.type;
     }
 
-    public HashMap<String, String> getOwner() {
+    public BaseOwner getOwner() {
         return this.owner;
     }
 }

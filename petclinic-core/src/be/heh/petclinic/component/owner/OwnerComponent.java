@@ -12,6 +12,9 @@ public interface OwnerComponent {
 
     Owner getOwners(int id);
 
+    List<Owner> getOwners(String lastname);
+
+
     // List<Pet> getPets(int id);
 
     // int addOwner(Owner owner);
