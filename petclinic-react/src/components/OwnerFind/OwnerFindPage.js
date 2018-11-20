@@ -18,7 +18,7 @@ export default class OwnerFindPage extends Component
             let owners = []
             response.data.forEach(owner => {
                 owners.push(
-                    <Owner key = {owner.lastname} {...owner}/>
+                    <Owner key = {owner.id} {...owner}/>
                 )
             });
             this.setState({owners})
