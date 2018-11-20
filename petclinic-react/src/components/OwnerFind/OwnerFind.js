@@ -1,12 +1,12 @@
 import React from 'react'
 
-const Owner = ({lastname,firstname,city, address, telephone, pets}) => {
+const Owner = ({id, lastname, firstname, city, address, telephone, petsNames}) => {
   return (
       <tr>
-        <td>{lastname + ' ' + firstname}</td>
+        <td><a href={id}>{lastname + ' ' + firstname}</a></td>
         <td>{city + ' ' + address}</td>
         <td>{telephone}</td>
-        <td>{pets}</td>
+        <td>{petsNames && petsNames.join(' ')}</td>
       </tr>
   )
 }

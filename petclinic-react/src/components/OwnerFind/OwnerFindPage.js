@@ -6,13 +6,14 @@ export default class OwnerFindPage extends Component
 {
     state = { owners:[] }
 
-    getOwners = async() => {
-        const response = await axios.get('http://localhost:9999/api/v1/owners')
+    getOwners = async (ln) => {
+        const response = await axios.get(`http://localhost:9999/api/v1/owners${ln && '/l/'+ln}`)
         return await response
     }
 
     setOwners = () => {
-        this.getOwners()
+        const a = document.querySelector("input").value;
+        this.getOwners(a)
         .then((response) => {
             let owners = []
             response.data.forEach(owner => {
@@ -26,7 +27,7 @@ export default class OwnerFindPage extends Component
 
     componentWillMount()
     {
-        this.setOwners()
+        // this.setOwners()
     }
 
     render()
@@ -35,6 +36,14 @@ export default class OwnerFindPage extends Component
             <div className="Content">
                 <div className="container xd-container">
                     <h2>Owners</h2>
+                    {/* <form method="get" action={this.setOwners}> */}
+                        {/* <input type="text"placeholder="Recherche de propriétaires" name="search"/> */}
+                        {/* <input type="submit"/> */}
+                    {/* </form> */}
+                    <input type="text"placeholder="Recherche de propriétaires" name="search"/>
+                    <button onClick={this.setOwners}>
+                        OK
+                    </button>
                     <table className = "table table-striped">
                         <thead>
                             <tr>
