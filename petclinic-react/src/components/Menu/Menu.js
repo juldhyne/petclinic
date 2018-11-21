@@ -13,13 +13,13 @@ export default class Menu extends React.Component {
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <ul className="navbar-nav mr-auto">
                         <li>
-                            <Link to="/" activeClassName="selected">HOME</Link>
+                            <Link to="/" /*activeClassName="selected"*/>HOME</Link>
                         </li>
                         <li>
-                            <Link to="/owners/find" activeClassName="selected">FIND OWNERS</Link>
+                            <Link to="/owners/find" /*activeClassName="selected"*/>FIND OWNERS</Link>
                         </li>
                         <li>
-                            <Link to="/vets" activeClassName="selected">VETERINARIANS</Link>
+                            <Link to="/vets" /*activeClassName="selected"*/>VETERINARIANS</Link>
                         </li>
                     </ul>
                 </div>
