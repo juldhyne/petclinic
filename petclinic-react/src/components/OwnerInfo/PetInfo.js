@@ -31,7 +31,7 @@ class PetInfo extends Component {
     }
 
     render() {
-        const { id, name, birthdate, type } = this.props.pet;
+        const { id, name, birthdate, type, owner: { id: oid } } = this.props.pet;
         return (
             <Fragment>
                 <tr>
@@ -54,11 +54,11 @@ class PetInfo extends Component {
                                 {this.state.visits}
                                 <tr>
                                     <td>
-                                        <Link to={`pets/${id}/edit`}>Edit Pet</Link>
+                                        <Link to={`/owners/${oid}/pets/${id}/edit`}>Edit Pet</Link>
                                     </td>
                                     <td>
                                         {/* id/visit/new, id/0/new, id/v/new or id/new ? */}
-                                        <Link to={`pets/${id}/visits/new`}>Add Visit</Link>
+                                        <Link to={`/owners/${oid}/pets/${id}/visits/new`}>Add Visit</Link>
                                     </td>
                                 </tr>
                             </tbody>

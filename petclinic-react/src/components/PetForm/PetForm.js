@@ -1,13 +1,16 @@
 import React, { Component, Fragment } from "react";
 import { Redirect } from 'react-router'
 
-export default class OwnerForm extends Component {
+export default class PetForm extends Component {
     state = {
-        firstname: "",
-        lastname: "",
-        address: "",
-        city: "",
-        telephone: "",
+        name: "",
+        birthdate: "",
+        type: "",
+        owner: {
+            id: "",
+            lastname: "",
+            firstname: ""
+        }
     }
 
 
@@ -26,9 +29,16 @@ export default class OwnerForm extends Component {
         return json
     }
 
-    getData = async (oid) => {
+    getOwner = async () => {
+        const oid = this.props.match.params.ownerId
         const response = await fetch(`http://localhost:9999/api/v1/owners/${oid}`)
-        console.log(response.ok)
+        const { id, lastname, firstname } = await response.json()
+        const json = { id, lastname, firstname }
+        this.setState({ owner: json })
+    }
+
+    getData = async (pid) => {
+        const response = await fetch(`http://localhost:9999/api/v1/pets/${pid}`)
         if (response.ok) {
             const json = await response.json()
             this.setState({ ...json })
@@ -49,39 +59,40 @@ export default class OwnerForm extends Component {
     }
 
     componentDidMount() {
+        this.getOwner();
         const { url } = this.props.match
-        const { ownerId: oid } = this.props.match.params
-        const re = /\/owners\/[\d]+\/edit/
-        re.test(url) && this.getData(oid)
+        const { petId: pid } = this.props.match.params
+        const re = /\/owners\/[\d]+\/pets\/[\d]+\/edit/
+        re.test(url) && this.getData(pid)
     }
 
     render() {
+        const { url } = this.props.match
+        const re = /\/owners\/[\d]+\/pets\/[\d]+\/edit/
+        const owner = [this.state.owner.lastname, this.state.owner.firstname].join(' ')
         return (
             <Fragment>
                 {this.state.redirect && <Redirect to='/error' />}
-                <h2>Owner</h2>
+                <h2>Pet</h2>
                 <form onSubmit={this.handleSubmit} method='POST'>
                     <label>
-                        First Name:
-          <input type="text" value={this.state.firstname} onChange={this.handleChange} name="firstname" />
+                        Owner:
+                        <span> {owner} </span>
+                        {/* <input type="text" value={owner} onChange={this.handleChange} name="owner" /> */}
                     </label>
                     <label>
-                        Last Name:
-          <input type="text" value={this.state.lastname} onChange={this.handleChange} name="lastname" />
+                        Name:
+          <input type="text" value={this.state.name} onChange={this.handleChange} name="name" />
                     </label>
                     <label>
-                        Address:
-          <input type="text" value={this.state.address} onChange={this.handleChange} name="address" />
+                        Birthdate:
+          <input type="text" value={this.state.birthdate} onChange={this.handleChange} name="birthdate" />
                     </label>
                     <label>
-                        City:
-          <input type="text" value={this.state.city} onChange={this.handleChange} name="city" />
+                        type:
+          <input type="text" value={this.state.type} onChange={this.handleChange} name="type" />
                     </label>
-                    <label>
-                        Telephone:
-          <input type="text" value={this.state.telephone} onChange={this.handleChange} name="telephone" />
-                    </label>
-                    <input type="submit" value={`${this.props.match.url === '/owners/1/edit' ? 'Update' : 'Add'} Owner`} />
+                    <input type="submit" value={`${re.test(url) ? 'Update' : 'Add'} Pet`} />
                 </form>
             </Fragment>
         )
