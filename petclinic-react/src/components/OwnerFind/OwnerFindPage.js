@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Owner from './OwnerFind'
 import React, { Component } from 'react'
+import {Link} from 'react-router-dom'
 
 export default class OwnerFindPage extends Component {
     state = { owners: [] }
@@ -50,6 +51,7 @@ export default class OwnerFindPage extends Component {
                             {this.state.owners}
                         </tbody>
                     </table>
+                    <Link to='/owners/new'>Add new owner</Link>
                 </div>
             </div>
         )

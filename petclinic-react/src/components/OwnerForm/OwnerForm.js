@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from "react";
+import {Redirect} from 'react-router'
 
-export default class OwnerNew extends Component {
+export default class OwnerForm extends Component {
     state = {
         firstname: "",
         lastname: "",
         address: "",
         city: "",
-        telephone: ""
+        telephone: "",
     }
 
 
@@ -25,23 +26,39 @@ export default class OwnerNew extends Component {
         return json
     }
 
+    getData = async (oid)=>{
+        const response = await fetch(`http://localhost:9999/api/v1/owners/${oid}`)
+        console.log(response.ok)
+        if(response.ok){
+            const json = await response.json()
+            this.setState({...json})
+        }else{
+            this.setState({redirect : true})
+        }
+    }
+    
     handleChange = ({ target }) => {
         this.setState({ [target.name]: target.value });
     }
-
+    
     handleSubmit = (event) => {
         event.preventDefault();
-        // const url = 'http://localhost:9999/api/v1/owners/new'
+        // const url = 'http://localhost:9999/api/v1/owners/${oid}'
         // do some validation
         // postData(url,this.state)
     }
-
+    
     componentDidMount() {
+        const {url}=this.props.match
+        const {ownerId:oid}=this.props.match.params
+        const re = /\/owners\/[\d]+\/edit/
+        re.test(url) && this.getData(oid)
     }
-
+    
     render() {
         return (
             <Fragment>
+                {this.state.redirect && <Redirect to='/error'/>}
                 <h2>Owner</h2>
                 <form onSubmit={this.handleSubmit} method='POST'>
                     <label>
@@ -64,7 +81,7 @@ export default class OwnerNew extends Component {
                         Telephone:
           <input type="text" value={this.state.telephone} onChange={this.handleChange} name="telephone" />
                     </label>
-                    <input type="submit" value="Add Owner" />
+                    <input type="submit" value={`${this.props.match.url === '/owners/1/edit' ? 'Edit' : 'Add'} owner`} />
                 </form>
             </Fragment>
         )

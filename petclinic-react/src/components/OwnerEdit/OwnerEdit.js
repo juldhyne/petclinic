@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 
-export default class OwnerNew extends Component {
+export default class OwnerEdit extends Component {
     state = {
         firstname: "",
         lastname: "",
@@ -25,20 +25,29 @@ export default class OwnerNew extends Component {
         return json
     }
 
+    getData = async (oid)=>{
+        const response = await fetch(`http://localhost:9999/api/v1/owners/${oid}`)
+        const json = await response.json()
+        this.setState({...json})
+    }
+    
     handleChange = ({ target }) => {
         this.setState({ [target.name]: target.value });
     }
-
+    
     handleSubmit = (event) => {
         event.preventDefault();
-        // const url = 'http://localhost:9999/api/v1/owners/new'
+        // const url = 'http://localhost:9999/api/v1/owners/${oid}'
         // do some validation
         // postData(url,this.state)
     }
-
+    
     componentDidMount() {
+        const {url}=this.props.match
+        const {ownerId:oid}=this.props.match.params
+        '/owners/1/edit' === url && this.getData(oid)
     }
-
+    
     render() {
         return (
             <Fragment>
@@ -64,7 +73,7 @@ export default class OwnerNew extends Component {
                         Telephone:
           <input type="text" value={this.state.telephone} onChange={this.handleChange} name="telephone" />
                     </label>
-                    <input type="submit" value="Add Owner" />
+                    <input type="submit" value="Edit Owner" />
                 </form>
             </Fragment>
         )
