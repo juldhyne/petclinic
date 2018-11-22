@@ -1,32 +1,103 @@
-.App {
-  text-align: center;
+html
+{
+  margin: 0%;
+  padding: 0%;
+}
+body
+{
+  background-image: url(https://images5.alphacoders.com/374/thumb-1920-374329.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+                padding-top: 0%;
+                margin: 0%;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+#navi 
+{
+    max-width: 100%;
+    margin: 0 auto;
+}
+#navi ul 
+{
+    text-align: center;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.87);
+    background-color: rgba(226, 226, 226, 0.733)
+}
+#navi ul li 
+{
+    display: inline-block;
+    
+}
+#navi ul li a 
+{
+    padding: 14px;
+    padding-left: 12px;
+    padding-right: 12px;
+    text-transform:uppercase;
+    color: rgb(73, 73, 73);
+    font-size: 18px;
+    text-decoration: none;
+    display: block;
+}
+#navi ul li a:hover
+{
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.61), inset 0 0 1px rgba(255, 255, 255, 0.6); 
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.table-fill {
+  border-collapse: collapse;
+  
+  margin: auto;
+  max-width: 40%;
+  width: 100%;
 }
-
-.App-link {
-  color: #61dafb;
+.table-fill th {
+  color:#D5DDE5;;
+  background:#1b1e24;
+  border-bottom:4px solid #9ea7af;
+  border-right: 1px solid #343a45;
+  font-size:23px;
+  font-weight: 100;
+  padding:24px;
+  text-align:left;
+  vertical-align:middle;
+  min-height: 80px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.table-fill tr {
+  color:#666B85;
+  font-size:16px;
+}
+.table-fill tr:hover td {
+  background:#4E5066;
+  color:#FFFFFF;
+  border-top: 1px solid #22262e;
+}
+.table-fill tr:nth-child(odd) td {
+  background:#EBEBEB;
+}
+ 
+.table-fill tr:nth-child(odd):hover td {
+  background:#4E5066;
+}
+.table-fill td {
+  background:#FFFFFF;
+  padding:20px;
+  text-align:left;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:18px;
+  border-right: 1px solid #C1C3D1;
+}
+#Vet-Title
+{
+  display: block;
+  margin: auto;
+  max-width: 600px;
+  padding:5px;
+  width: 100%;
+   font-size: 30px;
+   font-weight: 400;
+   font-family: "Roboto", helvetica, arial, sans-serif;
+   text-transform:uppercase;
 }

@@ -5,26 +5,26 @@ import React, { Component } from 'react'
 export default class VetsPage extends Component {
 
 
-  state = { vets:[] }
+  state = { vets: [] }
 
-  getVets = async() => {
+  getVets = async () => {
     const response = await axios.get('http://localhost:9999/api/v1/vets')
     return await response
   }
 
   setVets = () => {
     this.getVets()
-    .then((response) => {
-      let vets = []
-      //console.log(response)
-      response.data.forEach(vet => {
-        vets.push(
-          <Vet key={vet.lastname} {...vet}/>
-        )
-      });
-      console.log(vets)
-      this.setState({vets})
-    })
+      .then((response) => {
+        let vets = []
+        //console.log(response)
+        response.data.forEach(vet => {
+          vets.push(
+            <Vet key={vet.lastname} {...vet} />
+          )
+        });
+        console.log(vets)
+        this.setState({ vets })
+      })
   }
 
   componentWillMount() {
@@ -34,9 +34,9 @@ export default class VetsPage extends Component {
   render() {
     return (
       <div className="Content">
-      <div className="container xd-container">
-        <h2>Veterinarians</h2>
-        <table className="table table-striped">
+        <div className="container xd-container">
+          <h2 id="Vet-Title">Veterinarians</h2>
+          <table className="table table-striped table-fill">
             <thead>
               <tr>
                 <th>Name</th>
@@ -46,8 +46,8 @@ export default class VetsPage extends Component {
             <tbody>
               {this.state.vets}
             </tbody>
-        </table>
-      </div>
+          </table>
+        </div>
       </div>
     )
   }

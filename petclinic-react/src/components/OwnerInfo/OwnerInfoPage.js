@@ -1,7 +1,7 @@
 // import axios from 'axios'
 import OwnerInfo from './OwnerInfo'
 import PetInfo from './PetInfo';
-import {Redirect} from 'react-router';
+import { Redirect } from 'react-router';
 import React, { Component, Fragment } from 'react'
 
 export default class OwnerInfoPage extends Component {
@@ -13,18 +13,18 @@ export default class OwnerInfoPage extends Component {
 
     getOwner = async (id) => {
         const response = await fetch(`http://localhost:9999/api/v1/owners/${id}`)
-        if(response.ok){
+        if (response.ok) {
             const json = await response.json();
             return await json
-        }else{
-             this.setState({redirect : true})
-             return {}
+        } else {
+            this.setState({ redirect: true })
+            return {}
         }
     }
 
     setOwner = async (id) => {
         const owner = await this.getOwner(id)
-        if(this.mounted){
+        if (this.mounted) {
             this.setState({ owner })
         }
     }
@@ -37,15 +37,15 @@ export default class OwnerInfoPage extends Component {
 
     setPets = async (id) => {
         const pets = await this.getPets(id)
-        if(this.mounted){
-        const petInfos = pets.reduce((acc, pet) => {
-            acc.push(
-                <PetInfo key={pet.id} pet={pet} />
-            )
-            return acc
-        }, []);
+        if (this.mounted) {
+            const petInfos = pets.reduce((acc, pet) => {
+                acc.push(
+                    <PetInfo key={pet.id} pet={pet} />
+                )
+                return acc
+            }, []);
 
-        this.setState({ pets: petInfos })
+            this.setState({ pets: petInfos })
         }
     }
 
@@ -56,18 +56,18 @@ export default class OwnerInfoPage extends Component {
         this.setPets(id);
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.mounted = false;
     }
 
     render() {
         return (
             <Fragment >
-                {this.state.redirect && <Redirect to='/error'/>}
+                {this.state.redirect && <Redirect to='/error' />}
                 <h2>Owner Information</h2>
                 <OwnerInfo {...this.state.owner} />
                 <h2>Pets and Visits</h2>
-                <table className="table table-striped">
+                <table className="table table-striped table-fill">
                     <tbody>
                         {this.state.pets}
                     </tbody>
