@@ -67,7 +67,7 @@ export default class OwnerInfoPage extends Component {
                 <h2>Owner Information</h2>
                 <OwnerInfo {...this.state.owner} />
                 <h2>Pets and Visits</h2>
-                <table className="table table-striped">
+                <table className="table table-striped" className="table-fill">
                     <tbody>
                         {this.state.pets}
                     </tbody>

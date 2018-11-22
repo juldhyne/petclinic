@@ -38,7 +38,7 @@ export default class OwnerFindPage extends Component {
                     <button onClick={this.setOwners}>
                         OK
                     </button>
-                    <table className="table table-striped">
+                    <table className="table table-striped" className="table-fill">
                         <thead>
                             <tr>
                                 <th>Name</th>

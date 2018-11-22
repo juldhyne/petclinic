@@ -44,7 +44,7 @@ class PetInfo extends Component {
                         <dd>{type}</dd>
                     </dl></td>
                     <td valign="top">
-                        <table className="table-condensed">
+                        <table className="table-condensed" className="table-fill">
                             <thead><tr>
                                 <th>Visit Date</th>
                                 <th>Description</th>

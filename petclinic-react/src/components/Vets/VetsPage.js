@@ -35,8 +35,8 @@ export default class VetsPage extends Component {
     return (
       <div className="Content">
       <div className="container xd-container">
-        <h2>Veterinarians</h2>
-        <table className="table table-striped">
+        <h2 id="Vet-Title">Veterinarians</h2>
+        <table className="table table-striped" className="table-fill">
             <thead>
               <tr>
                 <th>Name</th>
