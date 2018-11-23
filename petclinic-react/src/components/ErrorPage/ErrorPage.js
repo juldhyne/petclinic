@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 
 export default () => (
-    <div className="Content">
+  <div className="Content">
     <h2>Error</h2>
   </div>
 );
