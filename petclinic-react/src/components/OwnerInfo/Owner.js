@@ -1,13 +1,15 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
-const OwnerInfo = ({ id, lastname, firstname, city, address, telephone }) => {
+
+const Owner = ({ id, lastname, firstname, city, address, telephone }) => {
     return (
         <Fragment>
+            <h2>Owner Information</h2>
             <table className="table table-striped">
                 <tbody>
                     <tr>
                         <th>Name</th>
-                        <td><b>{[lastname, firstname].join(' ')}</b></td>
+                        <td><b>{`${lastname} ${firstname}`}</b></td>
                     </tr>
                     <tr>
                         <th>Address</th>
@@ -29,4 +31,4 @@ const OwnerInfo = ({ id, lastname, firstname, city, address, telephone }) => {
     )
 }
 
-export default OwnerInfo
+export default Owner

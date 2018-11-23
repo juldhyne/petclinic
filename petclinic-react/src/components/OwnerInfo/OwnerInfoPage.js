@@ -1,6 +1,5 @@
-// import axios from 'axios'
-import OwnerInfo from './OwnerInfo'
-import PetInfo from './PetInfo';
+import Owner from './Owner'
+import PetList from './PetList';
 import { Redirect } from 'react-router';
 import React, { Component, Fragment } from 'react'
 
@@ -8,14 +7,13 @@ export default class OwnerInfoPage extends Component {
     state = {
         owners: {},
         pets: [],
-        visits: []
     }
 
     getOwner = async (id) => {
         const response = await fetch(`http://localhost:9999/api/v1/owners/${id}`)
         if (response.ok) {
             const json = await response.json();
-            return await json
+            return json
         } else {
             this.setState({ redirect: true })
             return {}
@@ -38,22 +36,15 @@ export default class OwnerInfoPage extends Component {
     setPets = async (id) => {
         const pets = await this.getPets(id)
         if (this.mounted) {
-            const petInfos = pets.reduce((acc, pet) => {
-                acc.push(
-                    <PetInfo key={pet.id} pet={pet} />
-                )
-                return acc
-            }, []);
-
-            this.setState({ pets: petInfos })
+            this.setState({ pets })
         }
     }
 
     componentDidMount() {
         this.mounted = true;
         const id = this.props.match.params.ownerId
-        this.setOwner(id);
-        this.setPets(id);
+        this.setOwner(id)
+        this.setPets(id)
     }
 
     componentWillUnmount() {
@@ -61,17 +52,11 @@ export default class OwnerInfoPage extends Component {
     }
 
     render() {
+        if (this.state.redirect) return <Redirect to='/error' />
         return (
             <Fragment >
-                {this.state.redirect && <Redirect to='/error' />}
-                <h2>Owner Information</h2>
-                <OwnerInfo {...this.state.owner} />
-                <h2>Pets and Visits</h2>
-                <table className="table table-striped table-fill">
-                    <tbody>
-                        {this.state.pets}
-                    </tbody>
-                </table>
+                <Owner {...this.state.owner} />
+                <PetList pets={this.state.pets} />
             </Fragment>
         )
     }
