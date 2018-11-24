@@ -22,9 +22,8 @@ export default class OwnerInfoPage extends Component {
 
     setOwner = async (id) => {
         const owner = await this.getOwner(id)
-        if (this.mounted) {
-            this.setState({ owner })
-        }
+        !this.state.redirect && this.setState({ owner })
+        return id
     }
 
     getPets = async (id) => {
@@ -34,21 +33,18 @@ export default class OwnerInfoPage extends Component {
     }
 
     setPets = async (id) => {
-        const pets = await this.getPets(id)
-        if (this.mounted) {
+        if (!this.state.redirect) {
+            const pets = await this.getPets(id)
             this.setState({ pets })
         }
     }
 
     componentDidMount() {
-        this.mounted = true;
         const id = this.props.match.params.ownerId
         this.setOwner(id)
-        this.setPets(id)
-    }
+            .then(this.setPets)
 
-    componentWillUnmount() {
-        this.mounted = false;
+
     }
 
     render() {
