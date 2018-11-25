@@ -105,13 +105,15 @@ Format:
 ## Todo
 
 - [ ] React frontend
-  - [ ] Page d'erreur
-  - [ ] Page d'acceuil
-  - [ ] Page des vétérinaires
-  - [ ] Page de recherche de propriétaire
-  - [ ] Page de propriétaire
-  - [ ] Page d'animal
-
+  - [x] Page d'erreur
+  - [x] Page d'acceuil
+  - [x] Page des vétérinaires
+  - [x] Page de recherche de propriétaire
+  - [x] Page de propriétaire
+  - [x] Page d'animal
+  - [ ] Validation formulaire
+  - [ ] Envoi formulaire
+    
 - [ ] GET Endpoints
   - [x] Propriétaire comprenant la liste de nom de ses animaux
   - [x] Animal comprenant le nom de son maitre
