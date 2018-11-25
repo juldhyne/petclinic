@@ -4,8 +4,7 @@ import Visit from "./Visit";
 
 const componentize = array => array.map(item => <Visit key={item.id} {...item} />)
 
-const VisitList = ({ visits, oid }) => {
-    const { petId: pid } = visits
+const VisitList = ({ visits, pid, oid }) => {
     return (
         <td valign="top">
             <table className="table-condensed table-fill" >

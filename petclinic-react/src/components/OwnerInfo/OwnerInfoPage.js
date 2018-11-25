@@ -23,7 +23,7 @@ export default class OwnerInfoPage extends Component {
     setOwner = async (id) => {
         const owner = await this.getOwner(id)
         !this.state.redirect && this.setState({ owner })
-        return id
+        return id // just for promises callback purpose
     }
 
     getPets = async (id) => {
@@ -40,11 +40,8 @@ export default class OwnerInfoPage extends Component {
     }
 
     componentDidMount() {
-        const id = this.props.match.params.ownerId
-        this.setOwner(id)
+        this.setOwner(this.props.match.params.ownerId)
             .then(this.setPets)
-
-
     }
 
     render() {
