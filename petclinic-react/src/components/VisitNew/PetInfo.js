@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react'
-// import { Link } from 'react-router-dom'
 
 const PetInfo = ({ name, birthdate, type, owner: { lastname, firstname } }) => {
-    const owner = `${lastname} ${firstname}`
     return (
         <Fragment>
             <b>Pet</b>
@@ -19,7 +17,7 @@ const PetInfo = ({ name, birthdate, type, owner: { lastname, firstname } }) => {
                     <td>{name}</td>
                     <td>{birthdate}</td>
                     <td>{type}</td>
-                    <td>{owner}</td>
+                    <td>{`${lastname} ${firstname}`}</td>
                 </tr>
                 </tbody></table>
         </Fragment >

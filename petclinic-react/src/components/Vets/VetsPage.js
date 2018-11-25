@@ -1,4 +1,4 @@
-import axios from 'axios'
+// import axios from 'axios'
 import Vet from './Vet'
 import React, { Component } from 'react'
 
@@ -8,24 +8,16 @@ export default class VetsPage extends Component {
   state = { vets: [] }
 
   getVets = async () => {
-    const response = await axios.get('http://localhost:9999/api/v1/vets')
-    return await response
+    const response = await fetch('http://localhost:9999/api/v1/vets')
+    return await response.json()
   }
 
-  setVets = () => {
-    this.getVets()
-      .then((response) => {
-        let vets = []
-        //console.log(response)
-        response.data.forEach(vet => {
-          vets.push(
-            <Vet key={vet.lastname} {...vet} />
-          )
-        });
-        console.log(vets)
-        this.setState({ vets })
-      })
+  setVets = async () => {
+    const vets = await this.getVets()
+    const vetsComponents = await vets.map((vet, index) => <Vet key={index} {...vet} />)
+    this.setState({ vets: vetsComponents })
   }
+
 
   componentWillMount() {
     this.setVets()
