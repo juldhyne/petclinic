@@ -3,13 +3,18 @@ package be.heh.petclinic.web;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestBody;
+=======
+import org.springframework.web.bind.annotation.ResponseStatus;
+>>>>>>> some experiment
 import org.springframework.web.bind.annotation.RestController;
 
 import be.heh.petclinic.component.owner.OwnerComponent;
@@ -32,12 +37,9 @@ public class OwnerRestController {
 	}
 
 	@GetMapping("api/v1/owners/{id:[\\d]+}")
-	public ResponseEntity<Owner> getOwners(@PathVariable int id ){
-		Owner owner = ownerComponentImpl.getOwners(id);
-		if(owner == null){
-			return new ResponseEntity<Owner>(HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<Owner>(owner,HttpStatus.OK);
+	public ResponseEntity<Owner> getOwners(@PathVariable int id ) throws EmptyResultDataAccessException {
+        Owner  owner = ownerComponentImpl.getOwners(id);
+		return new ResponseEntity<Owner>(owner,HttpStatus.FOUND);
 	}
 
 	@GetMapping("api/v1/owners/l/{lastname:[\\D]+}")
