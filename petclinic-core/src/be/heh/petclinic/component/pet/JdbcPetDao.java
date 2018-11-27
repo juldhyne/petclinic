@@ -32,6 +32,13 @@ public class JdbcPetDao {
                 new PetRowMapper());
     }
 
+    public void insertPet(Pet pet)
+    {
+        JdbcTemplate insert = new JdbcTemplate(dataSource);
+        insert.update("INSERT INTO pets (name, birthdate, type) VALUES (?, ?, ?)",
+        new Object[]{pet.getName(), pet.getBirthDate(), pet.getType()});
+    }
+
     public List<Pet> findByOwnerId(int ownerId) {
         JdbcTemplate select = new JdbcTemplate(dataSource);
         return select.query(

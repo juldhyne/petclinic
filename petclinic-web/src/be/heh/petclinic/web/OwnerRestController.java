@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import be.heh.petclinic.component.owner.OwnerComponent;
@@ -44,6 +47,19 @@ public class OwnerRestController {
 			return new ResponseEntity<Collection<Owner>>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Collection<Owner>>(owner,HttpStatus.OK);
+	}
+
+	@PostMapping("api/v1/owners")
+	public ResponseEntity<Owner> insertOwner(@RequestBody Owner owner){
+		ownerComponentImpl.insertOwner(owner);
+		return new ResponseEntity<Owner>(owner,HttpStatus.CREATED);
+	}
+
+	@PutMapping("api/v1/owners/{id:[\\d]+}")
+	public ResponseEntity<Owner> updateOwner(@RequestBody Owner owner, @PathVariable int id){
+		owner.setId(id);
+		ownerComponentImpl.updateOwner(owner);
+		return new ResponseEntity<Owner>(owner,HttpStatus.CREATED);
 	}
 
 	// @PostMapping("api/", method = RequestMethod.POST)

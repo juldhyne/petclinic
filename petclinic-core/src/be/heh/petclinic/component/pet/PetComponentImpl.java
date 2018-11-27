@@ -36,4 +36,9 @@ class PetComponentImpl implements PetComponent {
         return pets;
     }
 
+    @Override
+    public void insertPet(Pet pet) {
+     petDao.insertPet(pet);
+    }
+
 }

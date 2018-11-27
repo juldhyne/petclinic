@@ -13,5 +13,8 @@ public interface PetComponent {
 
     List<Pet> getPetsByOwnerId(int id);
 
+    void insertPet(Pet pet);
+
+
 
 }

@@ -14,15 +14,16 @@ export default class OwnerFormPage extends Component {
 
 
     postData = async (url = '', data = {}) => {
-        const encode = (obj) => Object.entries(obj).reduce((acc, [key, val]) => {
-            acc.append(key, val)
-            return acc
-        }, new URLSearchParams())
-        const body = encode(data)
+        const { ownerId: oid } = this.props.match.params
         const response = await fetch(url, {
-            method: "POST",
+            headers:
+            {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json; charset=utf-8',
+            },  
+            method: `${oid ? "PUT" : "POST"}`,
             mode: "cors",
-            body: body
+            body: JSON.stringify(data)
         })
         const json = await response.json()
         return json
@@ -40,9 +41,14 @@ export default class OwnerFormPage extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        // const url = 'http://localhost:9999/api/v1/owners/${oid}'
+
+        const { ownerId: oid } = this.props.match.params
+
+        const url = `http://localhost:9999/api/v1/owners/${oid ? oid : ""}`
+
         // do some validation
-        // postData(url,this.state)
+        this.postData(url,this.state.owner)
+        console.log(url);
     }
 
     componentDidMount() {

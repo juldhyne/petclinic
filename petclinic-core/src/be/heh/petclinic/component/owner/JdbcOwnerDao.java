@@ -31,12 +31,28 @@ public class JdbcOwnerDao {
         return select.queryForObject(String.join(" ", sql, "WHERE id=?"), new Object[] {id},
                 new OwnerRowMapper());
     }
+    
+    public void insertOwner(Owner owner)
+    {
+        JdbcTemplate insert = new JdbcTemplate(dataSource);
+        insert.update("INSERT INTO owners (first_name, last_name, city, address,telephone) VALUES (?, ?, ?, ?, ?)",
+        new Object[]{owner.getFirstname(), owner.getLastname(), owner.getCity(), owner.getAddress(), owner.getTelephone()});
+    }
+
+    public void updateOwner(Owner owner)
+    {
+        JdbcTemplate update = new JdbcTemplate(dataSource);
+        update.update("UPDATE owners SET first_name = ?, last_name = ?, city = ?, address = ?,telephone = ? WHERE id = ?",
+        new Object[]{owner.getFirstname(), owner.getLastname(), owner.getCity(), owner.getAddress(), owner.getTelephone(),owner.getId()});
+    }
 
     public List<Owner> findByLastname(String lastname) {
         JdbcTemplate select = new JdbcTemplate(dataSource);
         return select.query(String.join(" ", sql, "WHERE last_name LIKE ?"),
                 new Object[] {String.format("%s%%", lastname)}, new OwnerRowMapper());
     }
+
+    
 
     // Useless function ?
     // public List<Pet> findPets(int id) {

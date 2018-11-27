@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import be.heh.petclinic.component.visit.VisitComponent;
@@ -37,6 +39,12 @@ public class VisitRestController {
 		}
 		return new ResponseEntity<Collection<Visit>>(visits,HttpStatus.OK);
 	}
+
+	@PostMapping("api/v1/visits")
+	public ResponseEntity<Visit> getVisitsByPetId(@RequestBody Visit visit){
+		return new ResponseEntity<Visit>(visit,HttpStatus.OK);
+	}
+
 	//	Todo
 	// 	Make range request ?
 }

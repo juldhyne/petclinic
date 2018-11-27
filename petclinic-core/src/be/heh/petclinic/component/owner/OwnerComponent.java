@@ -14,7 +14,9 @@ public interface OwnerComponent {
 
     List<Owner> getOwners(String lastname);
 
+    void insertOwner(Owner owner);
 
+    void updateOwner(Owner owner);
     // List<Pet> getPets(int id);
 
     // int addOwner(Owner owner);
