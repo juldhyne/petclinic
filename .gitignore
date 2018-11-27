@@ -1,10 +1,10 @@
 #IDE
 .idea/
+out/
 
 #gradle
 .gradle/
 build/
-out/
 bin/
 
 # Compiled class file
