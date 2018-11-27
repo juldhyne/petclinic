@@ -8,11 +8,19 @@ public class VetTests {
 
     @Test
     public void test_object_vet(){
-        //be.heh.petclinic.domain.Vet vet =new be.heh.petclinic.domain.Vet("James","James","none");
+        be.heh.petclinic.domain.Vet vet = new be.heh.petclinic.domain.Vet();
 
-       // assertEquals("James",vet.getLastname());
-       // assertEquals("James",vet.getFirstname());
-        //assertEquals("none",vet.getSpeciality());
+        String firstname = "John";
+        String lastname = "Doe";
+        String specialty = "Dead";
+
+        vet.setFirstname(firstname);
+        vet.setLastname(lastname);
+        vet.setSpeciality(specialty);
+
+        assertEquals(firstname,vet.getFirstname());
+        assertEquals(lastname,vet.getLastname());
+        assertEquals(specialty,vet.getSpeciality());
     }
 
 }
