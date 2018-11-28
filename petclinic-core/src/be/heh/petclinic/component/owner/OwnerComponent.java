@@ -1,10 +1,7 @@
 package be.heh.petclinic.component.owner;
 
 import be.heh.petclinic.domain.Owner;
-import be.heh.petclinic.domain.Pet;
 import java.util.List;
-import be.heh.petclinic.domain.Owner;
-import be.heh.petclinic.domain.Pet;
 
 public interface OwnerComponent {
 

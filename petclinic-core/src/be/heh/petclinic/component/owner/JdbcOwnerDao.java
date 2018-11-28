@@ -2,16 +2,10 @@ package be.heh.petclinic.component.owner;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import be.heh.petclinic.domain.Owner;
-import be.heh.petclinic.domain.Pet;
-import be.heh.petclinic.component.pet.PetRowMapper;
 import java.util.List;
 import javax.sql.DataSource;
-import org.springframework.jdbc.core.JdbcTemplate;
-import be.heh.petclinic.component.pet.PetRowMapper;
-import be.heh.petclinic.domain.Owner;
-import be.heh.petclinic.domain.Pet;
 
-public class JdbcOwnerDao {
+public class JdbcOwnerDao implements JdbcOwner {
 
     private DataSource dataSource;
     private static String sql =
@@ -21,29 +15,33 @@ public class JdbcOwnerDao {
         this.dataSource = dataSource;
     }
 
+    @Override
     public List<Owner> findAll() {
         JdbcTemplate select = new JdbcTemplate(dataSource);
         return select.query(sql, new OwnerRowMapper());
     }
 
+    @Override
     public Owner findById(int id) {
         JdbcTemplate select = new JdbcTemplate(dataSource);
         return select.queryForObject(String.join(" ", sql, "WHERE id=?"), new Object[] {id},
                 new OwnerRowMapper());
     }
-    
-    public void insertOwner(Owner owner)
-    {
+
+    public void insertOwner(Owner owner) {
         JdbcTemplate insert = new JdbcTemplate(dataSource);
-        insert.update("INSERT INTO owners (first_name, last_name, city, address,telephone) VALUES (?, ?, ?, ?, ?)",
-        new Object[]{owner.getFirstname(), owner.getLastname(), owner.getCity(), owner.getAddress(), owner.getTelephone()});
+        insert.update(
+                "INSERT INTO owners (first_name, last_name, city, address,telephone) VALUES (?, ?, ?, ?, ?)",
+                new Object[] {owner.getFirstname(), owner.getLastname(), owner.getCity(),
+                        owner.getAddress(), owner.getTelephone()});
     }
 
-    public void updateOwner(Owner owner)
-    {
+    public void updateOwner(Owner owner) {
         JdbcTemplate update = new JdbcTemplate(dataSource);
-        update.update("UPDATE owners SET first_name = ?, last_name = ?, city = ?, address = ?,telephone = ? WHERE id = ?",
-        new Object[]{owner.getFirstname(), owner.getLastname(), owner.getCity(), owner.getAddress(), owner.getTelephone(),owner.getId()});
+        update.update(
+                "UPDATE owners SET first_name = ?, last_name = ?, city = ?, address = ?,telephone = ? WHERE id = ?",
+                new Object[] {owner.getFirstname(), owner.getLastname(), owner.getCity(),
+                        owner.getAddress(), owner.getTelephone(), owner.getId()});
     }
 
     public List<Owner> findByLastname(String lastname) {
@@ -52,7 +50,11 @@ public class JdbcOwnerDao {
                 new Object[] {String.format("%s%%", lastname)}, new OwnerRowMapper());
     }
 
-    
+
+    @Override
+    public void setDatasource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     // Useless function ?
     // public List<Pet> findPets(int id) {

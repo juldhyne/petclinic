@@ -8,11 +8,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-    <bean id="JdbcOwnerDao" class="be.heh.petclinic.component.owner.JdbcOwnerDao">
-    </bean>
-    <bean id="OwnerComponent" class="be.heh.petclinic.component.owner.OwnerComponentImpl">
+
+    <bean id="PetComponent" class="be.heh.petclinic.component.pet.PetComponentImpl">
         <constructor-arg name="dataSource" ref="dataSource" />
-        <constructor-arg name="JdbcOwnerDao" ref="JdbcOwnerDao" />
     </bean>
 
 </beans>
