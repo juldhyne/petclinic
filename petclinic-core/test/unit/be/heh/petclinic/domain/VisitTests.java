@@ -1,4 +1,4 @@
-package be.heh.domain;
+package be.heh.petclinic.domain;
 
 import org.junit.jupiter.api.Test;
 
