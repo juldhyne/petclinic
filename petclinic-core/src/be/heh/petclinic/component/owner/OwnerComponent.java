@@ -9,6 +9,7 @@ public interface OwnerComponent {
 
     Owner getOwners(int id);
 
+<<<<<<< HEAD
     List<Owner> getOwners(String lastname);
 
     void insertOwner(Owner owner);
@@ -18,4 +19,6 @@ public interface OwnerComponent {
 
     // int addOwner(Owner owner);
 
+=======
+>>>>>>> :white_check_mark: OwnerComponent and PetComoponent
 }

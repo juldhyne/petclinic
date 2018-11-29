@@ -1,10 +1,14 @@
 package be.heh.petclinic.component.owner;
-
-import org.springframework.jdbc.core.JdbcTemplate;
 import be.heh.petclinic.domain.Owner;
+<<<<<<< HEAD
 import java.util.List;
-import javax.sql.DataSource;
+=======
 
+>>>>>>> :white_check_mark: OwnerComponent and PetComoponent
+import javax.sql.DataSource;
+import java.util.List;
+
+<<<<<<< HEAD
 public class JdbcOwnerDao implements JdbcOwner {
 
     private DataSource dataSource;
@@ -55,20 +59,12 @@ public class JdbcOwnerDao implements JdbcOwner {
     public void setDatasource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
+=======
+public interface JdbcOwnerDao {
+    List<Owner> findAll();
+>>>>>>> :white_check_mark: OwnerComponent and PetComoponent
 
-    // Useless function ?
-    // public List<Pet> findPets(int id) {
-    // JdbcTemplate select = new JdbcTemplate(dataSource);
-    // return select.query("SELECT * FROM pets WHERE owner_id = ?", new Object[] {id},
-    // new PetRowMapper());
-    // }
+    Owner findById(int id);
 
-    // Todo
-    // public int insertOwner(Owner owner) {
-    // JdbcTemplate insert = new JdbcTemplate(dataSource);
-    // String sql =
-    // "INSERT INTO owners (first_name, last_name, city, address, telephone) VALUES (?,?,?,?,?)";
-    // return insert.update(sql, owner.getFirstname(), owner.getLastname(), owner.getCity(),
-    // owner.getAddress(), owner.getTelephone());
-    // }
+    void setDatasource(DataSource datasource);
 }
