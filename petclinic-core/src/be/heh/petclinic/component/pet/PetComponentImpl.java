@@ -6,33 +6,34 @@ import be.heh.petclinic.domain.*;
 
 class PetComponentImpl implements PetComponent {
 
-    private JdbcPetDao petDao;
+    private JdbcPetDao jdbcPetDaoImpl;
 
-    public PetComponentImpl(DataSource dataSource) {
-        petDao = new JdbcPetDao(dataSource);
+    public PetComponentImpl(JdbcPetDao jdbcPetDao,DataSource dataSource) {
+        this.jdbcPetDaoImpl = jdbcPetDao;
+        this.jdbcPetDaoImpl.setDatasource(dataSource);
     }
 
     @Override
     public List<Pet> getPets() {
-        List<Pet> pets = petDao.findAll();
+        List<Pet> pets = jdbcPetDaoImpl.findAll();
         return pets;
     }
 
     @Override
     public Pet getPets(int id) {
-        Pet pet = petDao.findById(id);
+        Pet pet = jdbcPetDaoImpl.findById(id);
         return pet;
     }
 
     @Override
     public List<Pet> getPets(String type) {
-        List<Pet> pets = petDao.findByType(type);
+        List<Pet> pets = jdbcPetDaoImpl.findByType(type);
         return pets;
     }
 
     @Override
     public List<Pet> getPetsByOwnerId(int id) {
-        List<Pet> pets = petDao.findByOwnerId(id);
+        List<Pet> pets = jdbcPetDaoImpl.findByOwnerId(id);
         return pets;
     }
 

@@ -3,63 +3,68 @@ package be.heh.petclinic.component.owner;
 import be.heh.petclinic.domain.Owner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import javax.sql.DataSource;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class OwnerComponentTests {
 
+    Owner owner = new Owner();
+    List<Owner> owners = new ArrayList<Owner>(Collections.nCopies(42,new Owner()));
+    OwnerComponent ownerComponentimpl;
+
     @Mock
-    JdbcOwner jdbcOwner;
+    DataSource dataSource;
 
-
-    OwnerComponentImpl ownerComponentImpl;
+    @Mock
+    JdbcOwnerDao jdbcOwnerDao;
 
 
     @BeforeEach
-    public void setupMock() {
+    public void setup() {
         MockitoAnnotations.initMocks(this);
+        ownerComponentimpl = new OwnerComponentImpl(jdbcOwnerDao,dataSource);
     }
 
     @Test
-    public void test_creation_mock(){
-        assertNotNull(jdbcOwner);
-//        assertNotNull(ownerComponentImpl);
+    public void test_create_mock(){
+        assertNotNull(dataSource);
+        assertNotNull(jdbcOwnerDao);
+        assertNotNull(ownerComponentimpl);
     }
 
-//    @Test
-//    public void test_findById() {
-//        Owner owner = new Owner();
-//
-//        owner.setId(1);
-//        owner.setFirstname("Franklin");
-//        owner.setLastname("George");
-//        owner.setCity("110 W. Liberty St.");
-//        owner.setAddress("Madison");
-//        owner.setTelephone("6085551023");
-//        owner.setPetsNames(new String[]{"Leo","Samantha","Max","Sly"});
-//
-//
-//        when(jdbcOwner.findById(1)).thenReturn(owner);
-//        assertEquals(owner, ownerComponentImpl.getOwners(1));
-//    }
+    @Test
+    public void test_findById_equal() {
+        when(jdbcOwnerDao.findById(1)).thenReturn(owner);
+        assertEquals(owner, ownerComponentimpl.getOwners(1));
+    }
 
+    @Test
+    public void test_findById_different() {
+        Owner o = new Owner();
+        when(jdbcOwnerDao.findById(1)).thenReturn(owner);
+        assertNotEquals(o, ownerComponentimpl.getOwners(1));
+    }
 
+    @Test
+    public void test_findAll_equal() {
+        when(jdbcOwnerDao.findAll()).thenReturn(owners);
+        assertEquals(42, ownerComponentimpl.getOwners().size());
+    }
+
+    @Test
+    public void test_findAll_different() {
+        when(jdbcOwnerDao.findAll()).thenReturn(owners);
+        assertNotEquals(10, ownerComponentimpl.getOwners().size());
+    }
 }

@@ -3,29 +3,29 @@ package be.heh.petclinic.component.owner;
 import java.util.List;
 import javax.sql.DataSource;
 import be.heh.petclinic.domain.*;
-import org.springframework.beans.factory.annotation.Autowired;
 
 class OwnerComponentImpl implements OwnerComponent {
 
-    private JdbcOwner ownerDaoImpl;
+    private JdbcOwnerDao jdbcOwnerDaoImpl;
 
-    public OwnerComponentImpl(DataSource dataSource,JdbcOwner ownerDao) {
-        this.ownerDaoImpl = ownerDao;
-        this.ownerDaoImpl.setDatasource(dataSource);
+    public OwnerComponentImpl(JdbcOwnerDao jdbcOwnerDao, DataSource dataSource) {
+        this.jdbcOwnerDaoImpl = jdbcOwnerDao;
+        this.jdbcOwnerDaoImpl.setDatasource(dataSource);
     }
 
     @Override
     public List<Owner> getOwners() {
-        List<Owner> owners = ownerDaoImpl.findAll();
+        List<Owner> owners = jdbcOwnerDaoImpl.findAll();
         return owners;
     }
 
     @Override
     public Owner getOwners(int id) {
-        Owner owner = ownerDaoImpl.findById(id);
+        Owner owner = jdbcOwnerDaoImpl.findById(id);
         return owner;
     }
 
+<<<<<<< HEAD
     @Override
     public List<Owner> getOwners(String lastname) {
         List<Owner> owners = ownerDao.findByLastname(lastname);
@@ -43,4 +43,6 @@ class OwnerComponentImpl implements OwnerComponent {
     // return ownerDao.insertOwner(owner);
     // }
 
+=======
+>>>>>>> :white_check_mark: OwnerComponent and PetComoponent
 }

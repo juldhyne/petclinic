@@ -8,9 +8,11 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-
+    <bean id="JdbcPetDao" class="be.heh.petclinic.component.pet.JdbcPetDaoImpl">
+    </bean>
     <bean id="PetComponent" class="be.heh.petclinic.component.pet.PetComponentImpl">
         <constructor-arg name="dataSource" ref="dataSource" />
+        <constructor-arg name="JdbcPetDao" ref="JdbcPetDao" />
     </bean>
 
 </beans>
