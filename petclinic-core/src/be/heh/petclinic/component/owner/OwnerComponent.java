@@ -5,8 +5,10 @@ import java.util.List;
 
 public interface OwnerComponent {
 
-    List<Owner> getOwners();
+    Owner[] getOwners();
 
     Owner getOwners(int id);
+
+    Owner[] getOwners(String lastname);
 
 }

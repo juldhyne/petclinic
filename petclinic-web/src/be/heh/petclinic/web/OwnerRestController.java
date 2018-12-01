@@ -30,22 +30,9 @@ public class OwnerRestController {
 	}
 
 	@GetMapping("api/v1/owners/l/{lastname:[\\D]+}")
-	public ResponseEntity<Collection<Owner>> getOwners(@PathVariable String lastname ){
-		Collection<Owner> owner = ownerComponentImpl.getOwners(lastname);
-		if(owner.isEmpty()){
-			return new ResponseEntity<Collection<Owner>>(HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<Collection<Owner>>(owner,HttpStatus.OK);
+	public ResponseEntity<Owner[]> getOwners(@PathVariable String lastname ){
+		Owner[] owner = ownerComponentImpl.getOwners(lastname);
+		return new ResponseEntity<Owner[]>(owner,HttpStatus.OK);
 	}
-
-	// @PostMapping("api/", method = RequestMethod.POST)
-	// public ResponseEntity<Owner> getOwner(@RequestParam int id){
-	
-	// 	Owner owner = ownerComponentImpl.getOwner(id);
-	// 	if(owners.isEmpty()){
-	// 		return new ResponseEntity<Owner>(HttpStatus.NOT_FOUND);
-	// 	}
-	// 	return new ResponseEntity<Owner>(owners,HttpStatus.OK);
-	// }
 
 }
