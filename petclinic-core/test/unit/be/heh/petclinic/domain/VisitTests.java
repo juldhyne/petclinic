@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class VisitTests {
+class VisitTests {
     @Test
-    public void test_object_visit(){
+    void test_object_visit() {
         be.heh.petclinic.domain.Visit visit = new be.heh.petclinic.domain.Visit();
 
         int id = 66;
@@ -19,9 +19,9 @@ public class VisitTests {
         visit.setDescription(description);
         visit.setPetId(petId);
 
-        assertEquals(id,visit.getId());
-        assertEquals(date,visit.getDate());
-        assertEquals(description,visit.getDescription());
-        assertEquals(petId,visit.getPetId());
+        assertEquals(id, visit.getId());
+        assertEquals(date, visit.getDate());
+        assertEquals(description, visit.getDescription());
+        assertEquals(petId, visit.getPetId());
     }
 }
