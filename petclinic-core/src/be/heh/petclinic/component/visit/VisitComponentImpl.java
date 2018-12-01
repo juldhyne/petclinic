@@ -6,21 +6,20 @@ import be.heh.petclinic.domain.*;
 
 class VisitComponentImpl implements VisitComponent {
 
-    private JdbcVisitDao visitDao;
+    private JdbcVisitDao jdbcVisitDaoImpl;
 
-    public VisitComponentImpl(DataSource dataSource) {
-        visitDao = new JdbcVisitDao(dataSource);
+    public VisitComponentImpl(JdbcVisitDao jdbcVisitDao,DataSource dataSource) {
+        this.jdbcVisitDaoImpl = jdbcVisitDao;
+        this.jdbcVisitDaoImpl.setDatasource(dataSource);
     }
 
     @Override
     public Visit getVisitById(int id) {
-        Visit visit = visitDao.findById(id);
-        return visit;
+        return jdbcVisitDaoImpl.findById(id);
     }
 
     @Override
-    public List<Visit> getVisitsByPetId(int petId) {
-        List<Visit> visits = visitDao.findByPetId(petId);
-        return visits;
+    public Visit[] getVisitsByPetId(int petId) {
+        return jdbcVisitDaoImpl.findByPetId(petId);
     }
 }

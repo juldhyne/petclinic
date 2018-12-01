@@ -14,27 +14,23 @@ class PetComponentImpl implements PetComponent {
     }
 
     @Override
-    public List<Pet> getPets() {
-        List<Pet> pets = jdbcPetDaoImpl.findAll();
-        return pets;
+    public Pet[] getPets() {
+        return jdbcPetDaoImpl.findAll();
     }
 
     @Override
     public Pet getPets(int id) {
-        Pet pet = jdbcPetDaoImpl.findById(id);
-        return pet;
+        return jdbcPetDaoImpl.findById(id);
     }
 
     @Override
-    public List<Pet> getPets(String type) {
-        List<Pet> pets = jdbcPetDaoImpl.findByType(type);
-        return pets;
+    public Pet[] getPets(String type) {
+        return jdbcPetDaoImpl.findByType(type);
     }
 
     @Override
-    public List<Pet> getPetsByOwnerId(int id) {
-        List<Pet> pets = jdbcPetDaoImpl.findByOwnerId(id);
-        return pets;
+    public Pet[] getPetsByOwnerId(int id) {
+        return jdbcPetDaoImpl.findByOwnerId(id);
     }
 
     @Override

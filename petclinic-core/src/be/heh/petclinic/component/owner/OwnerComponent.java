@@ -5,20 +5,14 @@ import java.util.List;
 
 public interface OwnerComponent {
 
-    List<Owner> getOwners();
+    Owner[] getOwners();
 
     Owner getOwners(int id);
 
-<<<<<<< HEAD
-    List<Owner> getOwners(String lastname);
+    Owner[] getOwners(String lastname);
 
     void insertOwner(Owner owner);
 
     void updateOwner(Owner owner);
-    // List<Pet> getPets(int id);
 
-    // int addOwner(Owner owner);
-
-=======
->>>>>>> :white_check_mark: OwnerComponent and PetComoponent
 }

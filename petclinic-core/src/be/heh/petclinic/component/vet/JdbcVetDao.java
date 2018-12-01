@@ -1,23 +1,11 @@
 package be.heh.petclinic.component.vet;
 
-import java.util.List;
-import javax.sql.DataSource;
-import org.springframework.jdbc.core.JdbcTemplate;
 import be.heh.petclinic.domain.Vet;
 
-public class JdbcVetDao {
+import javax.sql.DataSource;
 
-    private DataSource dataSource;
+public interface JdbcVetDao {
+    Vet[] getVets();
 
-    public JdbcVetDao(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
-
-    public List<Vet> getEvents() {
-        JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query("SELECT last_name, first_name, speciality FROM vets",
-                new VetRowMapper());
-    }
-
+    void setDatasource(DataSource datasource);
 }
-

@@ -1,10 +1,13 @@
 package be.heh.petclinic.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Visit {
 
     private int id;
     private String date;
     private String description;
+    @JsonProperty("pets_names")
     private int petId;
 
     // Setters
@@ -41,4 +44,13 @@ public class Visit {
         return this.petId;
     }
 
+    @Override
+    public String toString() {
+        return "Visit{" +
+                "id=" + id +
+                ", date='" + date + '\'' +
+                ", description='" + description + '\'' +
+                ", petId=" + petId +
+                '}';
+    }
 }

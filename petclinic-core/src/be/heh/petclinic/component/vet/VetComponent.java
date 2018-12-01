@@ -5,6 +5,6 @@ import be.heh.petclinic.domain.Vet;
 
 public interface VetComponent {
 
-    List<Vet> getVets();
+    Vet[] getVets();
 
 }

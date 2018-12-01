@@ -21,6 +21,4 @@ public class OwnerRowMapper implements RowMapper<Owner> {
         }
         return owner;
     }
-
-
 }

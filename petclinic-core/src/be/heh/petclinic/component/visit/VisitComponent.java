@@ -7,6 +7,6 @@ public interface VisitComponent {
 
     Visit getVisitById(int id);
 
-    List<Visit> getVisitsByPetId(int petId);
+    Visit[] getVisitsByPetId(int petId);
 
 }

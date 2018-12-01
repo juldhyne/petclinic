@@ -1,12 +1,15 @@
 package be.heh.petclinic.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Pet {
 
     private int id;
     private String name;
     private String birthdate;
     private String type;
-    private BaseOwner owner;
+    @JsonProperty("owner_id")
+    private int ownerId;
 
     // Setters
     public void setId(int id) {
@@ -25,8 +28,8 @@ public class Pet {
         this.type = type;
     }
 
-    public void setOwner(BaseOwner owner) {
-        this.owner = owner;
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
     }
 
     // Getters
@@ -46,7 +49,18 @@ public class Pet {
         return this.type;
     }
 
-    public BaseOwner getOwner() {
-        return this.owner;
+    public int getOwnerId() {
+        return this.ownerId;
+    }
+
+    @Override
+    public String toString() {
+        return "Pet{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", birthdate='" + birthdate + '\'' +
+                ", type='" + type + '\'' +
+                ", ownerId=" + ownerId +
+                '}';
     }
 }
