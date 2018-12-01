@@ -23,13 +23,10 @@ class OwnerComponentImpl implements OwnerComponent {
         return jdbcOwnerDaoImpl.findById(id);
     }
 
-<<<<<<< HEAD
     @Override
-    public List<Owner> getOwners(String lastname) {
-        List<Owner> owners = ownerDao.findByLastname(lastname);
-        return owners;
+    public Owner[] getOwners(String lastname) {
+        return JdbcOwnerDao.findByLastname(lastname);
     }
-
 
     // @Override
     // public List<Pet> getPets(int id) {
@@ -37,16 +34,9 @@ class OwnerComponentImpl implements OwnerComponent {
     // return ownerPets;
     // }
 
-    @Override
-    public void insertOwner(Owner owner) {
-     ownerDao.insertOwner(owner);
-    }
+    // @Override
+    // public int addOwner(Owner owner) {
+    // return ownerDao.insertOwner(owner);
+    // }
 
-    @Override
-    public void updateOwner(Owner owner) {
-     ownerDao.updateOwner(owner);
-    }
-
-=======
->>>>>>> :white_check_mark: OwnerComponent and PetComoponent
 }

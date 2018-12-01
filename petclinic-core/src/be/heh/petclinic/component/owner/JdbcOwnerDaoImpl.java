@@ -31,6 +31,14 @@ public class JdbcOwnerDaoImpl implements JdbcOwnerDao {
     }
 
     @Override
+    public Owner[] findByLastname(String lastname) {
+        JdbcTemplate select = new JdbcTemplate(dataSource);
+        return select.query(String.join(" ", sql, "WHERE last_name LIKE ?"),
+                new Object[] {String.format("%s%%", lastname)}, new OwnerRowMapper()).toArray(new Owner[]{});
+
+    }
+
+    @Override
     public void setDatasource(DataSource dataSource) {
         this.dataSource = dataSource;
     }

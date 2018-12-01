@@ -9,5 +9,7 @@ public interface JdbcOwnerDao {
 
     Owner findById(int id);
 
+    Owner[] findByLastname(String lastName);
+
     void setDatasource(DataSource datasource);
 }
