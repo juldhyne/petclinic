@@ -8,20 +8,15 @@ import org.mockito.MockitoAnnotations;
 
 import javax.sql.DataSource;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-public class OwnerComponentTests {
+class OwnerComponentTests {
 
-    Owner owner = new Owner();
-    List<Owner> owners = new ArrayList<Owner>(Collections.nCopies(42,new Owner()));
-    OwnerComponent ownerComponentimpl;
+    private static final int n = 42;
+    private static final Owner owner = new Owner();
+    private static final Owner[] owners = new Owner[n];
+    private static OwnerComponent ownerComponentimpl;
 
     @Mock
     DataSource dataSource;
@@ -31,40 +26,40 @@ public class OwnerComponentTests {
 
 
     @BeforeEach
-    public void setup() {
+    void setup() {
         MockitoAnnotations.initMocks(this);
-        ownerComponentimpl = new OwnerComponentImpl(jdbcOwnerDao,dataSource);
+        ownerComponentimpl = new OwnerComponentImpl(jdbcOwnerDao, dataSource);
     }
 
     @Test
-    public void test_create_mock(){
+    void test_create_mock() {
         assertNotNull(dataSource);
         assertNotNull(jdbcOwnerDao);
         assertNotNull(ownerComponentimpl);
     }
 
     @Test
-    public void test_findById_equal() {
+    void test_findById_equal() {
         when(jdbcOwnerDao.findById(1)).thenReturn(owner);
         assertEquals(owner, ownerComponentimpl.getOwners(1));
     }
 
     @Test
-    public void test_findById_different() {
+    void test_findById_different() {
         Owner o = new Owner();
         when(jdbcOwnerDao.findById(1)).thenReturn(owner);
         assertNotEquals(o, ownerComponentimpl.getOwners(1));
     }
 
     @Test
-    public void test_findAll_equal() {
+    void test_findAll_equal() {
         when(jdbcOwnerDao.findAll()).thenReturn(owners);
-        assertEquals(42, ownerComponentimpl.getOwners().size());
+        assertEquals(n, ownerComponentimpl.getOwners().length);
     }
 
     @Test
-    public void test_findAll_different() {
+    void test_findAll_different() {
         when(jdbcOwnerDao.findAll()).thenReturn(owners);
-        assertNotEquals(10, ownerComponentimpl.getOwners().size());
+        assertNotEquals(10, ownerComponentimpl.getOwners().length);
     }
 }

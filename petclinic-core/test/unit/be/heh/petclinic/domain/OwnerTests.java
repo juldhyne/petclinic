@@ -4,9 +4,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class OwnerTests {
+class OwnerTests {
     @Test
-    public void test_object_owner(){
+    void test_object_owner() {
         be.heh.petclinic.domain.Owner owner = new be.heh.petclinic.domain.Owner();
 
         int id = 26;
@@ -15,7 +15,7 @@ public class OwnerTests {
         String city = "Mons";
         String address = "avenue de du génrale de gaulle 46";
         String telephone = "065656565";
-        String[] petsName = {"pikachu","evoli"};
+        String[] petsName = {"pikachu", "evoli"};
 
         owner.setId(id);
         owner.setFirstname(firstname);
@@ -25,12 +25,12 @@ public class OwnerTests {
         owner.setTelephone(telephone);
         owner.setPetsNames(petsName);
 
-        assertEquals(id,owner.getId());
-        assertEquals(firstname,owner.getFirstname());
-        assertEquals(lastname,owner.getLastname());
-        assertEquals(city,owner.getCity());
-        assertEquals(address,owner.getAddress());
-        assertEquals(telephone,owner.getTelephone());
-        assertEquals(petsName,owner.getPetsNames());
+        assertEquals(id, owner.getId());
+        assertEquals(firstname, owner.getFirstname());
+        assertEquals(lastname, owner.getLastname());
+        assertEquals(city, owner.getCity());
+        assertEquals(address, owner.getAddress());
+        assertEquals(telephone, owner.getTelephone());
+        assertEquals(petsName, owner.getPetsNames());
     }
 }

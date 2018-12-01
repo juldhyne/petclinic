@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-public class VetTests {
+class VetTests {
 
     @Test
-    public void test_object_vet(){
+    void test_object_vet(){
         be.heh.petclinic.domain.Vet vet = new be.heh.petclinic.domain.Vet();
 
         String firstname = "John";
