@@ -9,14 +9,4 @@ public interface OwnerComponent {
 
     Owner getOwners(int id);
 
-<<<<<<< HEAD
-    List<Owner> getOwners(String lastname);
-
-
-    // List<Pet> getPets(int id);
-
-    // int addOwner(Owner owner);
-
-=======
->>>>>>> :white_check_mark: OwnerComponent and PetComoponent
 }

@@ -15,6 +15,4 @@ public class VetRowMapper implements RowMapper<Vet> {
         vet.setSpeciality(rs.getString("speciality"));
         return vet;
     }
-
-
 }

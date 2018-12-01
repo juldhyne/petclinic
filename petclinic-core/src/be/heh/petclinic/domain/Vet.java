@@ -32,4 +32,12 @@ public class Vet {
         return this.speciality;
     }
 
+    @Override
+    public String toString() {
+        return "Vet{" +
+                "lastname='" + lastname + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", speciality='" + speciality + '\'' +
+                '}';
+    }
 }

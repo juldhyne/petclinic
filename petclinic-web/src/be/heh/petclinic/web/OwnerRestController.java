@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import be.heh.petclinic.component.owner.OwnerComponent;
 import be.heh.petclinic.domain.Owner;
@@ -20,13 +18,9 @@ public class OwnerRestController {
 	private OwnerComponent ownerComponentImpl;
     
 	@GetMapping("api/v1/owners")
-	public ResponseEntity<Collection<Owner>> getOwners(){
-	
-		Collection<Owner> owners = ownerComponentImpl.getOwners();
-		if(owners.isEmpty()){
-			return new ResponseEntity<Collection<Owner>>(HttpStatus.NOT_FOUND);
-		}
-		return new ResponseEntity<Collection<Owner>>(owners,HttpStatus.OK);
+	public ResponseEntity<Owner[]> getOwners(){
+		Owner[] owners = ownerComponentImpl.getOwners();
+		return new ResponseEntity<Owner[]>(owners,HttpStatus.FOUND);
 	}
 
 	@GetMapping("api/v1/owners/{id:[\\d]+}")

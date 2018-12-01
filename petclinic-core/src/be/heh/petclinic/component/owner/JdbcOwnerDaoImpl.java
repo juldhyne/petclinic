@@ -1,36 +1,37 @@
 package be.heh.petclinic.component.owner;
 
-import org.springframework.jdbc.core.JdbcTemplate;
 import be.heh.petclinic.domain.Owner;
+import org.springframework.jdbc.core.JdbcTemplate;
 
-import java.util.List;
 import javax.sql.DataSource;
+import java.util.Arrays;
+import java.util.List;
 
 public class JdbcOwnerDaoImpl implements JdbcOwnerDao {
 
-    private DataSource dataSource;
     private static String sql =
             "SELECT * , (SELECT ifnull(group_concat(name),'') FROM pets WHERE owner_id = owners.id) AS pets_names FROM owners";
+    private DataSource dataSource;
 
     public JdbcOwnerDaoImpl(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
     @Override
-    public List<Owner> findAll() {
+    public Owner[] findAll() {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query(sql, new OwnerRowMapper());
+        return select.query(sql, new OwnerRowMapper()).toArray(new Owner[]{});
     }
 
     @Override
     public Owner findById(int id) {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.queryForObject(String.join(" ", sql, "WHERE id=?"), new Object[] {id},
+        return select.queryForObject(String.join(" ", sql, "WHERE id=?"), new Object[]{id},
                 new OwnerRowMapper());
     }
 
     @Override
-    public void setDatasource(DataSource dataSource){
+    public void setDatasource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 

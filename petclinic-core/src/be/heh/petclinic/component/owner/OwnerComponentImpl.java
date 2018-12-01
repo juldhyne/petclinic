@@ -14,15 +14,13 @@ class OwnerComponentImpl implements OwnerComponent {
     }
 
     @Override
-    public List<Owner> getOwners() {
-        List<Owner> owners = jdbcOwnerDaoImpl.findAll();
-        return owners;
+    public Owner[] getOwners() {
+        return jdbcOwnerDaoImpl.findAll();
     }
 
     @Override
     public Owner getOwners(int id) {
-        Owner owner = jdbcOwnerDaoImpl.findById(id);
-        return owner;
+        return jdbcOwnerDaoImpl.findById(id);
     }
 
 <<<<<<< HEAD

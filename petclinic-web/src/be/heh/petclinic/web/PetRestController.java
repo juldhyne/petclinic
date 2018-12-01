@@ -20,12 +20,12 @@ public class PetRestController {
 	private PetComponent petComponentImpl;
 	
 	@GetMapping("api/v1/pets")
-	public ResponseEntity<Collection<Pet>> getPets(){
-		Collection<Pet> pets = petComponentImpl.getPets();
-		if(pets.isEmpty()){
-			return new ResponseEntity<Collection<Pet>>(HttpStatus.NOT_FOUND);
+	public ResponseEntity<Pet[]> getPets(){
+		Pet[] pets = petComponentImpl.getPets();
+		if(pets.length == 0){
+			return new ResponseEntity<Pet[]>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<Collection<Pet>>(pets,HttpStatus.OK);
+		return new ResponseEntity<Pet[]>(pets,HttpStatus.OK);
 	}
 
 	@GetMapping("api/v1/pets/{id:[\\d]+}")
@@ -38,20 +38,20 @@ public class PetRestController {
 	}
 
 	@GetMapping("api/v1/pets/{type:[\\D]+}")
-	public ResponseEntity<Collection<Pet>> getPets(@PathVariable String type){
-		Collection<Pet> pets = petComponentImpl.getPets(type);
-		if(pets.isEmpty()){
-			return new ResponseEntity<Collection<Pet>>(HttpStatus.NOT_FOUND);
+	public ResponseEntity<Pet[]> getPets(@PathVariable String type){
+		Pet[] pets = petComponentImpl.getPets(type);
+		if(pets.length == 0){
+			return new ResponseEntity<Pet[]>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<Collection<Pet>>(pets,HttpStatus.OK);
+		return new ResponseEntity<Pet[]>(pets,HttpStatus.OK);
 	}
 
 	@GetMapping("api/v1/pets/o/{id:[\\d]+}")
-	public ResponseEntity<Collection<Pet>> getPetsByOwnerId(@PathVariable int id){
-		Collection<Pet> pets = petComponentImpl.getPetsByOwnerId(id);
-		if(pets.isEmpty()){
-			return new ResponseEntity<Collection<Pet>>(HttpStatus.NOT_FOUND);
+	public ResponseEntity<Pet[]> getPetsByOwnerId(@PathVariable int id){
+		Pet[] pets = petComponentImpl.getPetsByOwnerId(id);
+		if(pets.length == 0){
+			return new ResponseEntity<Pet[]>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<Collection<Pet>>(pets,HttpStatus.OK);
+		return new ResponseEntity<Pet[]>(pets,HttpStatus.OK);
 	}
 }

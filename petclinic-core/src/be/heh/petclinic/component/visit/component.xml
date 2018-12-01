@@ -8,9 +8,11 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    <bean id="JdbcVisitDao" class="be.heh.petclinic.component.visit.JdbcVisitDaoImpl"/>
 
     <bean id="VisitComponent" class="be.heh.petclinic.component.visit.VisitComponentImpl">
         <constructor-arg name="dataSource" ref="dataSource" />
+        <constructor-arg name="JdbcVisitDao" ref="JdbcVisitDao" />
     </bean>
 
 </beans>

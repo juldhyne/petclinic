@@ -5,13 +5,13 @@ import be.heh.petclinic.domain.Pet;
 
 public interface PetComponent {
 
-    List<Pet> getPets();
+    Pet[] getPets();
 
     Pet getPets(int id);
 
-    List<Pet> getPets(String types);
+    Pet[] getPets(String types);
 
-    List<Pet> getPetsByOwnerId(int id);
+    Pet[] getPetsByOwnerId(int id);
 
 
 }

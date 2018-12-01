@@ -6,16 +6,16 @@ import be.heh.petclinic.domain.*;
 
 class VetComponentImpl implements VetComponent {
 
-    private JdbcVetDao vetDao;
+    private JdbcVetDao jdbcVetDaoImpl;
 
-    public VetComponentImpl(DataSource dataSource) {
-        vetDao = new JdbcVetDao(dataSource);
+    public VetComponentImpl(JdbcVetDao jdbcVetDao ,DataSource dataSource) {
+        this.jdbcVetDaoImpl = jdbcVetDao;
+        this.jdbcVetDaoImpl.setDatasource(dataSource);
     }
 
     @Override
-    public List<Vet> getVets() {
-        List<Vet> vets = vetDao.getEvents();
-        return vets;
+    public Vet[] getVets() {
+        return jdbcVetDaoImpl.getVets();
     }
 
 
