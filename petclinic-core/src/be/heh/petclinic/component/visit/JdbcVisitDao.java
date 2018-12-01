@@ -10,4 +10,6 @@ public interface JdbcVisitDao {
     Visit[] findByPetId(int id);
 
     void setDatasource(DataSource datasource);
+
+    void insertVisit(Visit visit);
 }

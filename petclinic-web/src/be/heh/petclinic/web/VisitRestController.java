@@ -38,7 +38,8 @@ public class VisitRestController {
     }
 
 	@PostMapping("api/v1/visits")
-	public ResponseEntity<Visit> getVisitsByPetId(@RequestBody Visit visit){
+	public ResponseEntity<Visit> insertVisit(@RequestBody Visit visit){
+        visitComponentImpl.insertVisit(visit);
 		return new ResponseEntity<Visit>(visit,HttpStatus.OK);
 	}
 

@@ -9,4 +9,5 @@ public interface VisitComponent {
 
     Visit[] getVisitsByPetId(int petId);
 
+    void insertVisit(Visit visit);
 }

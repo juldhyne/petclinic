@@ -1,8 +1,8 @@
 package be.heh.petclinic.component.owner;
 
-import java.util.List;
+import be.heh.petclinic.domain.Owner;
+
 import javax.sql.DataSource;
-import be.heh.petclinic.domain.*;
 
 class OwnerComponentImpl implements OwnerComponent {
 
@@ -25,18 +25,17 @@ class OwnerComponentImpl implements OwnerComponent {
 
     @Override
     public Owner[] getOwners(String lastname) {
-        return JdbcOwnerDao.findByLastname(lastname);
+        return jdbcOwnerDaoImpl.findByLastname(lastname);
     }
 
-    // @Override
-    // public List<Pet> getPets(int id) {
-    // List<Pet> ownerPets = ownerDao.findPets(id);
-    // return ownerPets;
-    // }
+    @Override
+    public void insertOwner(Owner owner) {
+        jdbcOwnerDaoImpl.insertOwner(owner);
+    }
 
-    // @Override
-    // public int addOwner(Owner owner) {
-    // return ownerDao.insertOwner(owner);
-    // }
+    @Override
+    public void updateOwner(Owner owner) {
+        jdbcOwnerDaoImpl.updateOwner(owner);
+    }
 
 }

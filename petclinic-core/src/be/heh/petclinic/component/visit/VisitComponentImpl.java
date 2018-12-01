@@ -22,4 +22,9 @@ class VisitComponentImpl implements VisitComponent {
     public Visit[] getVisitsByPetId(int petId) {
         return jdbcVisitDaoImpl.findByPetId(petId);
     }
+
+    @Override
+    public void insertVisit(Visit visit) {
+        jdbcVisitDaoImpl.insertVisit(visit);
+    }
 }

@@ -17,4 +17,5 @@ public interface JdbcPetDao {
 
     void setDatasource(DataSource datasource);
 
+    void updatePet(Pet pet);
 }

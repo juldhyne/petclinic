@@ -15,6 +15,5 @@ public interface PetComponent {
 
     void insertPet(Pet pet);
 
-
-
+    void updatePet(Pet pet);
 }

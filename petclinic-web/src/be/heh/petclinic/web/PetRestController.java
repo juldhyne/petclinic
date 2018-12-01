@@ -2,13 +2,11 @@ package be.heh.petclinic.web;
 
 import java.util.Collection;
 
+import be.heh.petclinic.domain.Owner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import be.heh.petclinic.component.pet.PetComponent;
 import be.heh.petclinic.domain.Pet;
@@ -60,5 +58,11 @@ public class PetRestController {
 	public ResponseEntity<Pet> insertPet(@RequestBody Pet pet){
 		petComponentImpl.insertPet(pet);
 		return new ResponseEntity<Pet>(pet,HttpStatus.CREATED);
+	}
+	@PutMapping("api/v1/pets/{id:[\\d]+}")
+	public ResponseEntity<Pet> updatePet(@RequestBody Pet pet, @PathVariable int id) {
+		pet.setId(id);
+		petComponentImpl.updatePet(pet);
+		return new ResponseEntity<Pet>(pet, HttpStatus.OK);
 	}
 }

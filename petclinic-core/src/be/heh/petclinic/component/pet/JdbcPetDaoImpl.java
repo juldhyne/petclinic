@@ -2,6 +2,7 @@ package be.heh.petclinic.component.pet;
 
 import be.heh.petclinic.domain.Pet;
 import org.springframework.jdbc.core.JdbcTemplate;
+
 import javax.sql.DataSource;
 
 public class JdbcPetDaoImpl implements JdbcPetDao {
@@ -19,23 +20,30 @@ public class JdbcPetDaoImpl implements JdbcPetDao {
     }
 
     @Override
+    public void updatePet(Pet pet) {
+        JdbcTemplate update = new JdbcTemplate(dataSource);
+        update.update("UPDATE pets SET name = ?, birthdate = ?, type = ?, owner_id = ? WHERE id = ?",
+                new Object[]{pet.getName(), pet.getBirthdate(), pet.getType(), pet.getOwnerId(), pet.getId()});
+    }
+
+    @Override
     public Pet[] findAll() {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query(sql, new PetRowMapper()).toArray(new Pet[] {});
+        return select.query(sql, new PetRowMapper()).toArray(new Pet[]{});
     }
 
     @Override
     public Pet findById(int id) {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.queryForObject(String.join(" ", sql, "WHERE id = ?"), new Object[] {id},
+        return select.queryForObject(String.join(" ", sql, "WHERE id = ?"), new Object[]{id},
                 new PetRowMapper());
     }
 
     @Override
     public Pet[] findByType(String type) {
         JdbcTemplate select = new JdbcTemplate(dataSource);
-        return select.query(String.join(" ", sql, "WHERE type = ?"), new Object[] {type},
-                new PetRowMapper()).toArray(new Pet[] {});
+        return select.query(String.join(" ", sql, "WHERE type = ?"), new Object[]{type},
+                new PetRowMapper()).toArray(new Pet[]{});
     }
 
     @Override
@@ -43,14 +51,14 @@ public class JdbcPetDaoImpl implements JdbcPetDao {
         JdbcTemplate select = new JdbcTemplate(dataSource);
         return select.query(
                 String.join(" ", sql, "WHERE owner_id IN (SELECT id FROM owners WHERE id = ?)"),
-                new Object[] {ownerId}, new PetRowMapper()).toArray(new Pet[] {});
+                new Object[]{ownerId}, new PetRowMapper()).toArray(new Pet[]{});
     }
 
     @Override
     public void insertPet(Pet pet) {
         JdbcTemplate insert = new JdbcTemplate(dataSource);
         insert.update("INSERT INTO pets (name, birthdate, type) VALUES (?, ?, ?)",
-                new Object[] {pet.getName(), pet.getBirthdate(), pet.getType()});
+                new Object[]{pet.getName(), pet.getBirthdate(), pet.getType()});
     }
 
 }

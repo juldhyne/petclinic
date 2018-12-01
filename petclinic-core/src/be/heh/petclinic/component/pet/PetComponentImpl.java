@@ -35,7 +35,12 @@ class PetComponentImpl implements PetComponent {
 
     @Override
     public void insertPet(Pet pet) {
-     petDao.insertPet(pet);
+        jdbcPetDaoImpl.insertPet(pet);
+    }
+
+    @Override
+    public void updatePet(Pet pet) {
+        jdbcPetDaoImpl.updatePet(pet);
     }
 
 }

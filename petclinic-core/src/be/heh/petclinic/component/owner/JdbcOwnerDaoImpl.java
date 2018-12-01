@@ -4,8 +4,6 @@ import be.heh.petclinic.domain.Owner;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
-import java.util.Arrays;
-import java.util.List;
 
 public class JdbcOwnerDaoImpl implements JdbcOwnerDao {
 
@@ -34,28 +32,26 @@ public class JdbcOwnerDaoImpl implements JdbcOwnerDao {
     public Owner[] findByLastname(String lastname) {
         JdbcTemplate select = new JdbcTemplate(dataSource);
         return select.query(String.join(" ", sql, "WHERE last_name LIKE ?"),
-                new Object[] {String.format("%s%%", lastname)}, new OwnerRowMapper()).toArray(new Owner[]{});
+                new Object[]{String.format("%s%%", lastname)}, new OwnerRowMapper()).toArray(new Owner[]{});
 
+    }
+
+    @Override
+    public void insertOwner(Owner owner) {
+        JdbcTemplate insert = new JdbcTemplate(dataSource);
+        insert.update("INSERT INTO owners (first_name, last_name, city, address,telephone) VALUES (?, ?, ?, ?, ?)",
+                new Object[]{owner.getFirstname(), owner.getLastname(), owner.getCity(), owner.getAddress(), owner.getTelephone()});
+    }
+
+    @Override
+    public void updateOwner(Owner owner) {
+        JdbcTemplate update = new JdbcTemplate(dataSource);
+        update.update("UPDATE owners SET first_name = ?, last_name = ?, city = ?, address = ?,telephone = ? WHERE id = ?",
+                new Object[]{owner.getFirstname(), owner.getLastname(), owner.getCity(), owner.getAddress(), owner.getTelephone(), owner.getId()});
     }
 
     @Override
     public void setDatasource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
-
-    // Useless function ?
-    // public List<Pet> findPets(int id) {
-    // JdbcTemplate select = new JdbcTemplate(dataSource);
-    // return select.query("SELECT * FROM pets WHERE owner_id = ?", new Object[] {id},
-    // new PetRowMapper());
-    // }
-
-    // Todo
-    // public int insertOwner(Owner owner) {
-    // JdbcTemplate insert = new JdbcTemplate(dataSource);
-    // String sql =
-    // "INSERT INTO owners (first_name, last_name, city, address, telephone) VALUES (?,?,?,?,?)";
-    // return insert.update(sql, owner.getFirstname(), owner.getLastname(), owner.getCity(),
-    // owner.getAddress(), owner.getTelephone());
-    // }
 }
