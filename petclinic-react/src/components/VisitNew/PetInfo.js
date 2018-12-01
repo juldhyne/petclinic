@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 
-const PetInfo = ({ name, birthdate, type, owner: { lastname, firstname } }) => {
+const PetInfo = ({ pet: { name, birthdate, type }, owner: { lastname, firstname } }) => {
     return (
         <Fragment>
             <b>Pet</b>

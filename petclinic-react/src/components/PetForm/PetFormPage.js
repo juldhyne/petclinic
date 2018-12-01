@@ -36,29 +36,27 @@ export default class OwnerFormPage extends Component {
         if (response.ok) {
             return await response.json()
         } else this.setState({ redirect: true })
-        console.log(this.state)
     }
 
     setPet = async (pid) => {
         const pet = await this.getPet(pid)
-        // this.setOwner(pet.owner.id) // if rework of server
-        this.setState({ pet, owner: pet.owner })
+        this.setOwner(pet.owner_id) // if rework of server
+        this.setState({ pet })
     }
 
-    getOwner = async () => {
-        const oid = this.props.match.params.ownerId
+    getOwner = async (oid) => {
         const response = await fetch(`http://localhost:9999/api/v1/owners/${oid}`)
         if (response.ok) {
             return await response.json()
         } else {
             this.setState({ redirect: true })
+            return {}
         }
     }
 
-    setOwner = async () => {
-        const { lastname, firstname } = await this.getOwner();
-        this.setState({ owner: { lastname, firstname } })
-        console.log(this.state)
+    setOwner = async (oid) => {
+        const { lastname = "", firstname = "" } = await this.getOwner(oid);
+        !this.state.redirect && this.setState({ owner: { lastname, firstname } })
     }
 
     handleChange = ({ target }) => {
@@ -73,9 +71,9 @@ export default class OwnerFormPage extends Component {
     }
 
     componentDidMount() {
-        const { petId: pid } = this.props.match.params
+        const { petId: pid, ownerId: oid } = this.props.match.params
         if (pid) this.setPet(pid)
-        else this.setOwner(pid);
+        else this.setOwner(oid);
 
     }
 

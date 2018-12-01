@@ -24,7 +24,7 @@ export default class PetItemList extends Component {
     }
 
     render() {
-        const { id: pid, owner: { id: oid } } = this.props
+        const { id: pid, owner_id: oid } = this.props
         return (
             <tr>
                 <Pet {...this.props} />

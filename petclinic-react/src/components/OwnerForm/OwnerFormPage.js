@@ -20,7 +20,7 @@ export default class OwnerFormPage extends Component {
             {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json; charset=utf-8',
-            },  
+            },
             method: `${oid ? "PUT" : "POST"}`,
             mode: "cors",
             body: JSON.stringify(data)
@@ -47,8 +47,7 @@ export default class OwnerFormPage extends Component {
         const url = `http://localhost:9999/api/v1/owners/${oid ? oid : ""}`
 
         // do some validation
-        this.postData(url,this.state.owner)
-        console.log(url);
+        this.postData(url, this.state.owner)
     }
 
     componentDidMount() {

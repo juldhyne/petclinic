@@ -11,10 +11,10 @@ export default class VisitNewPage extends Component {
             name: "",
             birthdate: "",
             type: "",
-            owner: {
-                lastname: "",
-                firstname: ""
-            }
+        },
+        owner: {
+            lastname: "",
+            firstname: ""
         }
     }
 
@@ -62,6 +62,17 @@ export default class VisitNewPage extends Component {
         pet && this.setState({ pet })
     }
 
+    getOwner = async (oid) => {
+        const response = await fetch(`http://localhost:9999/api/v1/owners/${oid}`)
+        const json = response.ok ? await response.json() : {}
+        return json
+    }
+
+    setOwner = async (oid) => {
+        const { lastname = "", firstname = "" } = await this.getOwner(oid)
+        this.setState({ owner: { lastname, firstname } })
+    }
+
     componentDidMount() {
         const pid = this.props.match.params.petId
         this.setPet(pid)
@@ -72,7 +83,7 @@ export default class VisitNewPage extends Component {
         return (
             <Fragment>
                 <h2>New Visit</h2>
-                <PetInfo {...this.state.pet} />
+                <PetInfo {...this.state} />
                 <VisitForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
                 <VisitPrevious {...this.state} />
             </Fragment>
