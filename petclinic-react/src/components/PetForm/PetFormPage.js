@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import PetForm from "./PetForm";
+import { Redirect } from "react-router";
 
 export default class OwnerFormPage extends Component {
 
@@ -8,6 +9,7 @@ export default class OwnerFormPage extends Component {
             name: "",
             birthdate: "",
             type: "",
+            owner_id: this.props.match.params.ownerId
         },
         owner: {
             lastname: "",
@@ -17,17 +19,19 @@ export default class OwnerFormPage extends Component {
 
 
     postData = async (url = '', data = {}) => {
-        const encode = (obj) => Object.entries(obj).reduce((acc, [key, val]) => {
-            acc.append(key, val)
-            return acc
-        }, new URLSearchParams())
-        const body = encode(data)
+        const { petId: pid } = this.props.match.params
         const response = await fetch(url, {
-            method: "POST",
+            headers:
+            {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json; charset=utf-8',
+            },
+            method: `${pid ? "PUT" : "POST"}`,
             mode: "cors",
-            body: body
+            body: JSON.stringify(data)
         })
         const json = await response.json()
+        console.log(json)
         return json
     }
 
@@ -68,6 +72,13 @@ export default class OwnerFormPage extends Component {
         // const url = 'http://localhost:9999/api/v1/owners/${oid}'
         // do some validation
         // postData(url,this.state)
+        const { petId: pid } = this.props.match.params
+
+        const url = `http://localhost:9999/api/v1/pets/${pid ? pid : ""}`
+
+        // do some validation
+        console.log(this.state.pet)
+        this.postData(url, this.state.pet)
     }
 
     componentDidMount() {

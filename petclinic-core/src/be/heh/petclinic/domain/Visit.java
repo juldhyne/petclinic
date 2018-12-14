@@ -7,7 +7,7 @@ public class Visit {
     private int id;
     private String date;
     private String description;
-    @JsonProperty("pets_names")
+    @JsonProperty("pet_id")
     private int petId;
 
     // Setters

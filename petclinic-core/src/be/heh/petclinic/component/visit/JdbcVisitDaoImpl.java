@@ -37,8 +37,8 @@ public class JdbcVisitDaoImpl implements JdbcVisitDao {
     @Override
     public void insertVisit(Visit visit) {
         JdbcTemplate insert = new JdbcTemplate(dataSource);
-        insert.update("INSERT INTO owners (date,description, pet_id) VALUES (?, ?, ?)",
-                new Object[]{visit.getDate(), visit.getDescription(), visit.getPetId()});
+        insert.update("INSERT INTO visits (date,description, pet_id) VALUES (?, ?, ?)",
+               new Object[]{visit.getDate(), visit.getDescription(), visit.getPetId()});
     }
 
 }

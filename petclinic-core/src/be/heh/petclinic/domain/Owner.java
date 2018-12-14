@@ -15,12 +15,14 @@ public class Owner{
     @JsonProperty("pets_names")
     private String[] petsNames;
 
+
     // Setters
     public void setId(int id) {
+
         this.id = id;
     }
 
-    public void setLastname(String lastname) {
+    public void setLastname(String lastname){
         this.lastname = lastname;
     }
 

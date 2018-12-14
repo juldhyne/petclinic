@@ -7,6 +7,11 @@ import VisitPrevious from "./VisitPrevious";
 export default class VisitNewPage extends Component {
     state = {
         visits: [],
+        visit:{
+            description:"",
+            date:"",
+            pet_id:+this.props.match.params.petId
+        },
         pet: {
             name: "",
             birthdate: "",
@@ -19,16 +24,37 @@ export default class VisitNewPage extends Component {
     }
 
     handleChange = ({ target }) => {
-        this.setState({ [target.name]: target.value });
+        
+        // this.setState({ owner: { ...this.state.owner, [target.name]: target.value } });
+        this.setState({visit:{  ...this.state.visit,[target.name]: target.value }});
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        // const url = 'http://localhost:9999/api/v1/owners/${oid}'
+         const url = 'http://localhost:9999/api/v1/visits'
         // do some validation
         // postData(url,this.state)
+        //const { ownerId: oid } = this.props.match.params
+        console.log(this.state.visit)
+        console.log(typeof this.state.visit.date,typeof this.state.visit.description,typeof this.state.visit.pet_id)
+        this.postData(url, this.state.visit)
     }
 
+    postData = async (url = '', data = {}) =>{
+        const response = await fetch(url, {
+            headers:
+            {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json; charset=utf-8',
+            },
+            method: "POST",
+            mode: "cors",
+            body: JSON.stringify(data)
+        })
+        const json = await response.json()
+        console.log(json)
+        return json
+    }
     getVisits = async (pid) => {
         const response = await fetch(`http://localhost:9999/api/v1/visits/p/${pid}`)
         const json = response.ok ? await response.json() : []
@@ -75,6 +101,7 @@ export default class VisitNewPage extends Component {
 
     componentDidMount() {
         const pid = this.props.match.params.petId
+        console.log(pid)
         this.setPet(pid)
         this.setVisits(pid)
     }
@@ -84,7 +111,7 @@ export default class VisitNewPage extends Component {
             <Fragment>
                 <h2>New Visit</h2>
                 <PetInfo {...this.state} />
-                <VisitForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+                <VisitForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} {...this.state.visit}/>
                 <VisitPrevious {...this.state} />
             </Fragment>
         )

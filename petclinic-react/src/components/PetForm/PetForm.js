@@ -16,7 +16,7 @@ const PetForm = ({ handleSubmit, handleChange, pet: { id, name, birthdate, type 
                 </label>
                 <label htmlFor='birthdate'>
                     Birthdate:
-          <input type="text" value={birthdate} onChange={handleChange} id="birthdate" name="birthdate" />
+          <input type="date" value={birthdate} onChange={handleChange} id="birthdate" name="birthdate" />
                 </label>
                 <label htmlFor='type'>
                     type:

@@ -57,8 +57,8 @@ public class JdbcPetDaoImpl implements JdbcPetDao {
     @Override
     public void insertPet(Pet pet) {
         JdbcTemplate insert = new JdbcTemplate(dataSource);
-        insert.update("INSERT INTO pets (name, birthdate, type) VALUES (?, ?, ?)",
-                new Object[]{pet.getName(), pet.getBirthdate(), pet.getType()});
+        insert.update("INSERT INTO pets (name, birthdate,owner_id, type) VALUES (?, ?, ?, ?)",
+                new Object[]{pet.getName(), pet.getBirthdate(),pet.getOwnerId(), pet.getType()});
     }
 
 }
